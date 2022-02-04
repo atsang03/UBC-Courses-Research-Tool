@@ -4,8 +4,8 @@ import Section from "../../../project_team659/src/controller/Section";
 
 
 export default class InsightFacade implements IInsightFacade {
-	private datasetList = [];
-	public courseList = [];
+	private datasetList: any[] = [];
+	private secList: any[] = [];
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let counter = 0;
@@ -19,10 +19,10 @@ export default class InsightFacade implements IInsightFacade {
 		let cid: string;
 		let uuid: string;
 		let year: number;
-		let section: Section;
+		let idList: string[] = [];
 		let zip = new JSZip();
 		zip.loadAsync(content, {base64: true}); // Store data as JSzip
-		zip.forEach(function(relativePath, file) { // For each Zip object
+		zip.forEach((relativePath, file) => { // For each Zip object
 			let cont: Promise<"string">;
 			cont = file.async("string").then((filecontent) => JSON.parse(filecontent,
 				(key, value) => {
@@ -44,15 +44,17 @@ export default class InsightFacade implements IInsightFacade {
 				}));
 			if (sub !== null && cid !== null && avg !== null && prof !== null && title !== null && pass !== null &&
 				fail !== null && audit !== null && uuid !== null && year !== null) {
-				section = new Section(sub, cid, avg, prof, title, pass, fail, audit, uuid, year);
+				this.secList.push(new Section(sub, cid, avg, prof, title, pass, fail, audit, uuid, year));
 				counter++;
 			}
 		});
-		return Promise.resolve([]);
+		this.datasetList.push({id: id,  kind: kind, numRows: counter});
+		this.datasetList.forEach((element) => idList.push(element.id));
+		return Promise.resolve(idList);
 	}
 
 	public listDatasets(): Promise<InsightDataset[]> {
-		return Promise.resolve([]);
+		return Promise.resolve(this.datasetList);
 	}
 
 	public performQuery(query: unknown): Promise<InsightResult[]> {
