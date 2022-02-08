@@ -7,7 +7,7 @@ export default class InsightFacade implements IInsightFacade {
 	private datasetList: any[] = [];
 	private secList: any[] = [];
 
-	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let counter = 0;
 		let sub: string;
 		let avg: number;
@@ -20,36 +20,42 @@ export default class InsightFacade implements IInsightFacade {
 		let uuid: string;
 		let year: number;
 		let idList: string[] = [];
+		let promises: Array<Promise<any>> = [];
 		let zip = new JSZip();
-		zip.loadAsync(content, {base64: true}); // Store data as JSzip
-		zip.forEach((relativePath, file) => { // For each Zip object
-			let cont: Promise<"string">;
-			cont = file.async("string").then((filecontent) => JSON.parse(filecontent,
-				(key, value) => {
-					switch (key) {
-						case "Subject:": sub = value;
-						case "Course": cid = value;
-						case "Avg": avg = value;
-						case "Professor": prof = value;
-						case "Title": title = value;
-						case "Pass": pass = value;
-						case "Fail": fail = value;
-						case "Audit": audit = value;
-						case "id": uuid = value;
-						case  "Section": if (value === "overall") {
+		const aPromise = zip.loadAsync(content, {base64: true}).then((zipfile) => {
+			zipfile.folder("courses")?.forEach((async (relativePath, file) => {
+				// For each Zip object
+				let jFile: any;
+				promises.push(file.async("string").then((filecontent) => {
+					jFile = JSON.parse(filecontent);
+					for (const element of  jFile.result) {
+						sub = element.Subject;
+						cid = element.Course;
+						avg = element.Avg;
+						prof = element.Professor;
+						title = element.Title;
+						pass = element.Pass;
+						fail = element.Fail;
+						audit = element.Audit;
+						uuid = element.id;
+						console.log(cid);
+						if (element.Year === "overall") {
 							year = 1990;
 						}
-						case "Year": year = value;
+						year = element.Year;
 					}
+					this.secList.push(new Section(sub, cid, avg, prof, title, pass, fail, audit, uuid, year));
+					console.log(this.secList);
 				}));
-			if (sub !== null && cid !== null && avg !== null && prof !== null && title !== null && pass !== null &&
-				fail !== null && audit !== null && uuid !== null && year !== null) {
-				this.secList.push(new Section(sub, cid, avg, prof, title, pass, fail, audit, uuid, year));
-				counter++;
-			}
+			}));
+		}).then(() => {
+			Promise.all(promises);
+			console.log(counter);
+			this.datasetList.push({id: id, kind: kind, numRows: counter});
+			this.datasetList.forEach((element) => idList.push(element.id));
 		});
-		this.datasetList.push({id: id,  kind: kind, numRows: counter});
-		this.datasetList.forEach((element) => idList.push(element.id));
+		await aPromise;
+		await Promise.all(promises);
 		return Promise.resolve(idList);
 	}
 
