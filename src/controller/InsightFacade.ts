@@ -8,7 +8,6 @@ export default class InsightFacade implements IInsightFacade {
 	private secList: any[] = [];
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		let counter = 0;
 		let sub: string;
 		let avg: number;
 		let prof: string;
@@ -22,6 +21,7 @@ export default class InsightFacade implements IInsightFacade {
 		let idList: string[] = [];
 		let promises: Array<Promise<any>> = [];
 		let zip = new JSZip();
+		let counter: number = 0;
 		const aPromise = zip.loadAsync(content, {base64: true}).then((zipfile) => {
 			zipfile.folder("courses")?.forEach((async (relativePath, file) => {
 				// For each Zip object
@@ -38,26 +38,27 @@ export default class InsightFacade implements IInsightFacade {
 						fail = element.Fail;
 						audit = element.Audit;
 						uuid = element.id;
-						console.log(cid);
-						if (element.Year === "overall") {
-							year = 1990;
-						}
 						year = element.Year;
 					}
-					this.secList.push(new Section(sub, cid, avg, prof, title, pass, fail, audit, uuid, year));
-					console.log(this.secList);
+					if (sub !== null && cid !== null && avg !== null && prof !== null && title !== null &&
+						pass !== null && fail !== null && audit !== null && uuid !== null && year !== null) {
+						this.secList.push(new Section(sub, cid, avg, prof, title, pass, fail, audit, uuid, year));
+						counter++;
+					}
 				}));
 			}));
-		}).then(() => {
-			Promise.all(promises);
-			console.log(counter);
-			this.datasetList.push({id: id, kind: kind, numRows: counter});
-			this.datasetList.forEach((element) => idList.push(element.id));
 		});
 		await aPromise;
 		await Promise.all(promises);
+		this.datasetList.push({id: id, kind: kind, numRows: counter});
+		console.log(counter);
+		console.log(this.datasetList);
+		this.datasetList.forEach((element) => idList.push(element.id));
+		console.log(idList);
+		console.log(this.secList);
 		return Promise.resolve(idList);
 	}
+
 
 	public listDatasets(): Promise<InsightDataset[]> {
 		return Promise.resolve(this.datasetList);
