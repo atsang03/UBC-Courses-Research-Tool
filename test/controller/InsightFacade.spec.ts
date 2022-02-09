@@ -83,7 +83,6 @@ describe("InsightFacade", function () {
 			const loadDatasetPromises = [
 				insightFacade.addDataset("courses", datasetContents.get("courses") ?? "", InsightDatasetKind.Courses),
 			];
-
 			return Promise.all(loadDatasetPromises);
 		});
 

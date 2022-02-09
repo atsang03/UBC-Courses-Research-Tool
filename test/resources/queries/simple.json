@@ -2,8 +2,10 @@
 	"title": "SELECT dept, avg WHERE avg > 97",
 	"input": {
 		"WHERE": {
-			"GT": {
-				"courses_avg": 97
+			"GT":{
+
+				"courses_avg":97
+
 			}
 		},
 		"OPTIONS": {
