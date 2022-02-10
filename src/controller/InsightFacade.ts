@@ -23,7 +23,7 @@ export default class InsightFacade implements IInsightFacade {
 							counter++;
 							this.secList.push(new Section(element.Subject, element.Course, element.Avg,
 								element.Professor, element.Title, element.Pass, element.Fail, element.Audit,
-								element.id, element.Year));
+								element.id, element.Year, id));
 						}
 					}
 				}));
@@ -53,6 +53,11 @@ export default class InsightFacade implements IInsightFacade {
 			}
 		}
 		);
+		this.secList.forEach((element) => {
+			if (element.dataID === id) {
+				element.remove();
+			}
+		});
 		return Promise.resolve(id);
 	}
 }
