@@ -8,16 +8,6 @@ export default class InsightFacade implements IInsightFacade {
 	private secList: any[] = [];
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		let sub: string;
-		let avg: number;
-		let prof: string;
-		let title: string;
-		let pass: number;
-		let fail: number;
-		let audit: number;
-		let cid: string;
-		let uuid: string;
-		let year: number;
 		let idList: string[] = [];
 		let promises: Array<Promise<any>> = [];
 		let zip = new JSZip();
@@ -29,21 +19,12 @@ export default class InsightFacade implements IInsightFacade {
 				promises.push(file.async("string").then((filecontent) => {
 					jFile = JSON.parse(filecontent);
 					for (const element of  jFile.result) {
-						sub = element.Subject;
-						cid = element.Course;
-						avg = element.Avg;
-						prof = element.Professor;
-						title = element.Title;
-						pass = element.Pass;
-						fail = element.Fail;
-						audit = element.Audit;
-						uuid = element.id;
-						year = element.Year;
-					}
-					if (sub !== null && cid !== null && avg !== null && prof !== null && title !== null &&
-						pass !== null && fail !== null && audit !== null && uuid !== null && year !== null) {
-						this.secList.push(new Section(sub, cid, avg, prof, title, pass, fail, audit, uuid, year));
-						counter++;
+						if (element.Section !== null) {
+							counter++;
+							this.secList.push(new Section(element.Subject, element.Course, element.Avg,
+								element.Professor, element.Title, element.Pass, element.Fail, element.Audit,
+								element.id, element.Year));
+						}
 					}
 				}));
 			}));
@@ -51,11 +32,7 @@ export default class InsightFacade implements IInsightFacade {
 		await aPromise;
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
-		console.log(counter);
-		console.log(this.datasetList);
 		this.datasetList.forEach((element) => idList.push(element.id));
-		console.log(idList);
-		console.log(this.secList);
 		return Promise.resolve(idList);
 	}
 
@@ -69,6 +46,12 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		return Promise.resolve("");
+		this.datasetList.forEach((element) => {
+			if (element.id === id) {
+				element.remove();
+			}
+		}
+		);
+		return Promise.resolve(id);
 	}
 }
