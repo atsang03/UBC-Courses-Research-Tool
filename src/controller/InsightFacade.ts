@@ -1,6 +1,6 @@
 import JSZip, {loadAsync} from "jszip";
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightResult} from "./IInsightFacade";
-import Section from "../../../project_team659/src/controller/Section";
+import Section from "./Section";
 
 
 export default class InsightFacade implements IInsightFacade {
@@ -33,6 +33,7 @@ export default class InsightFacade implements IInsightFacade {
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => idList.push(element.id));
+		this.secList.forEach((element) => JSON.stringify(element));
 		return Promise.resolve(idList);
 	}
 
