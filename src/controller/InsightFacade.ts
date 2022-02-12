@@ -54,55 +54,42 @@ export default class InsightFacade implements IInsightFacade {
 		if (this.checkValidQuery(JsonObj)) {
 			return Promise.reject(new InsightError("Invalid Query"));
 		}
-		// need section to find what dataId is (from OPTIONS->COLUMNS array  since it can never be empty!)
-		// since OPTIONS->COLUMNS array must always contain AT LEAST 1 element can always access first element
+		// section to find what dataId is (from OPTIONS->COLUMNS array  since it can never be empty!)
 		DataId = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
-		// console.log(typeof DataId);
 
-		// check idstring of COLUMNS are all the same
-		for (let value of Object.values(JsonObj["OPTIONS"]["COLUMNS"])) {
-			let ParsedValue: string = JSON.parse(JSON.stringify(value));
-			if(DataId !== ParsedValue.split("_")[0]) {
-				// console.log(DataId + " " + ParsedValue.split("_")[0]);
-				return Promise.reject(new InsightError("referenced multiple datasets in COLUMNS"));
-			}
+		// check idstring of COLUMNS are all the same and check idstring of ORDER is the same as DataId
+		if (this.checkColumnsAndOrder(JsonObj,DataId)) {
+			return Promise.reject(new InsightError("reference multiple data set in ORDER and/or COLUMNS"));
 		}
-
-		// check idstring of ORDER is the same as DataId
-		if (Object.keys(JsonObj["OPTIONS"]).includes("ORDER")) {
-			let value: string = JsonObj["OPTIONS"]["ORDER"];
-			if (DataId !== value.split("_")[0]) {
-				return Promise.reject(new InsightError("referenced multiple datasets in ORDER"));
-			}
-		}
-
-		// need section to make sure all dataId in WHERE are the same as DataId
 
 		// if WHERE does not contain any specification then push objects into result
-		if(Object.keys(JsonObj["WHERE"]).length === 0) {
+		if (Object.keys(JsonObj["WHERE"]).length === 0) {
 			result.push();
 		}
 
+		// section to make sure all dataId in WHERE are the same as DataId
+		if (!this.correctDatasetUsage(JsonObj["WHERE"],DataId,true)) {
+			return Promise.reject(new InsightError("referenced multiple datasets in BODY"));
+		}
+
 		// THIS IS FOR TESTING AND LEARNING PURPOSES WILL DELETE LATER
-		{
-			Object.values(JsonObj).forEach(function recursion(key) {
-				let value = JSON.stringify(key);
-				value = JSON.parse(value);
+		Object.values(JsonObj).forEach(function recursion(key) {
+			let value = JSON.stringify(key);
+			value = JSON.parse(value);
 			// console.log(typeof value);
-				// console.log(value);
-				if (typeof value === "object") {
+			// console.log(value);
+			if (typeof value === "object") {
 				// console.log("It is an object");
 				// console.log(Object.keys(value));
-					Object.values(value).forEach(function(values){
-						let val = JSON.stringify(values);
-						val = JSON.parse(val);
-						recursion(val);
-					});
-				} else {
-					// console.log(value);
-				}
-			});
-		}
+				Object.values(value).forEach(function (values) {
+					let val = JSON.stringify(values);
+					val = JSON.parse(val);
+					recursion(val);
+				});
+			} else {
+				// console.log(value);
+			}
+		});
 
 
 		// if resulting query exceeds 5000 then fails with ResultTooLargeError
@@ -123,6 +110,51 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
+	// returns false if there is a reference to more than 1 dataset
+	private correctDatasetUsage(obj: object, dataId: string,initial: boolean): boolean {
+		let result: boolean = initial;
+		// console.log(obj);
+		if (obj === null) {
+			return result;
+		}
+		if (result) {
+			for (let i of Object.keys(obj)) {
+				// console.log(i);
+				if ((i.includes("_"))) {
+					result = i.split("_")[0] === dataId;
+				} else {
+					for (let j of Object.values(obj)) {
+						// console.log(j);
+						result = this.correctDatasetUsage(j, dataId,result);
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	// return true if COLUMNS and/or ORDER references multiple datasets
+	private checkColumnsAndOrder(obj: any, dataId: string): boolean {
+		for (let value of Object.values(obj["OPTIONS"]["COLUMNS"])) {
+			let ParsedValue: string = JSON.parse(JSON.stringify(value));
+			if (dataId !== ParsedValue.split("_")[0]) {
+				// console.log(DataId + " " + ParsedValue.split("_")[0]);
+				return true;
+				// return Promise.reject(new InsightError("referenced multiple datasets in COLUMNS"));
+			}
+		}
+		// check idstring of ORDER is the same as DataId
+		if (Object.keys(obj["OPTIONS"]).includes("ORDER")) {
+			let value: string = obj["OPTIONS"]["ORDER"];
+			if (dataId !== value.split("_")[0]) {
+				return true;
+				// return Promise.reject(new InsightError("referenced multiple datasets in ORDER"));
+			}
+		}
+		return false;
+	}
+
+	// returns true if invalid query
 	private checkValidQuery(JsonObj: any): boolean {
 		// must contain WHERE and OPTION and only have length of 2 else it will reject with InsightError
 		if (!(Object.keys(JsonObj).includes("WHERE"))
