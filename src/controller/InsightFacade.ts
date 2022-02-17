@@ -1,6 +1,14 @@
 import JSZip, {loadAsync} from "jszip";
-import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightResult} from "./IInsightFacade";
+import {
+	IInsightFacade,
+	InsightDataset,
+	InsightDatasetKind,
+	InsightError,
+	InsightResult,
+	NotFoundError
+} from "./IInsightFacade";
 import Section from "./Section";
+import * as fs from "fs";
 
 
 export default class InsightFacade implements IInsightFacade {
@@ -8,32 +16,35 @@ export default class InsightFacade implements IInsightFacade {
 	private secList: any[] = [];
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		if (id.includes("_")) {
+			throw new InsightError("invalid id");
+		}
 		let idList: string[] = [];
 		let promises: Array<Promise<any>> = [];
 		let zip = new JSZip();
 		let counter: number = 0;
-		const aPromise = zip.loadAsync(content, {base64: true}).then((zipfile) => {
-			zipfile.folder("courses")?.forEach((async (relativePath, file) => {
+		const aPromise = await zip.loadAsync(content, {base64: true});
+		aPromise.folder("courses")?.forEach((async (relativePath, file) => {
 				// For each Zip object
-				let jFile: any;
-				promises.push(file.async("string").then((filecontent) => {
-					jFile = JSON.parse(filecontent);
-					for (const element of  jFile.result) {
-						if (element.Section !== null) {
-							counter++;
-							this.secList.push(new Section(element.Subject, element.Course, element.Avg,
-								element.Professor, element.Title, element.Pass, element.Fail, element.Audit,
-								element.id, element.Year, id));
-						}
+			let jFile: any;
+			promises.push(file.async("string").then((filecontent) => {
+				jFile = JSON.parse(filecontent);
+				for (const element of  jFile.result) {
+					if (element.Section !== null) {
+						counter++;
+						this.secList.push(new Section(element.Subject, element.Course, element.Avg,
+							element.Professor, element.Title, element.Pass, element.Fail, element.Audit,
+							element.id, element.Year, id));
 					}
-				}));
+				}
 			}));
-		});
+		}));
 		await aPromise;
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => idList.push(element.id));
-		this.secList.forEach((element) => JSON.stringify(element));
+		const json = JSON.stringify(this.secList);
+		fs.writeFileSync("data.json" ,JSON.stringify(json));
 		return Promise.resolve(idList);
 	}
 
@@ -47,6 +58,14 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
+		if (id.includes("_")) {
+			throw new InsightError("invalid id");
+		}
+		if (this.datasetList.every((element) => {
+			return !(element.id === id);
+		})) {
+			throw new NotFoundError("No dataset with this id found");
+		}
 		this.datasetList.forEach((element) => {
 			if (element.id === id) {
 				element.remove();
