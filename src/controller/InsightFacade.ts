@@ -55,7 +55,7 @@ export default class InsightFacade implements IInsightFacade {
 		let JsonObj = JSON.parse(JSON.stringify(query));
 		let result: InsightResult[] = [];
 		let DataId: string;
-		if (this.checkValidQuery(JsonObj)) {
+		if (this.checkWhereOptionsColumns(JsonObj)) {
 			return Promise.reject(new InsightError("Invalid Query"));
 		}
 		// section to find what dataId is (from OPTIONS->COLUMNS array  since it can never be empty!)
@@ -76,24 +76,31 @@ export default class InsightFacade implements IInsightFacade {
 			return Promise.reject(new InsightError("referenced multiple datasets in BODY"));
 		}
 
+		if(!this.checkField(JsonObj["WHERE"],true)) {
+			return Promise.reject(new InsightError("Invalid query, improper m/s-field or " +
+				"mismatch typeof for requested field "));
+		}
+
 		// THIS IS FOR TESTING AND LEARNING PURPOSES WILL DELETE LATER
-		Object.values(JsonObj).forEach(function recursion(key) {
-			let value = JSON.stringify(key);
-			value = JSON.parse(value);
+		{
+			Object.values(JsonObj).forEach(function recursion(key) {
+				let value = JSON.stringify(key);
+				value = JSON.parse(value);
 			// console.log(typeof value);
 			// console.log(value);
-			if (typeof value === "object") {
+				if (typeof value === "object") {
 				// console.log("It is an object");
 				// console.log(Object.keys(value));
-				Object.values(value).forEach(function (values) {
-					let val = JSON.stringify(values);
-					val = JSON.parse(val);
-					recursion(val);
-				});
-			} else {
+					Object.values(value).forEach(function (values) {
+						let val = JSON.stringify(values);
+						val = JSON.parse(val);
+						recursion(val);
+					});
+				} else {
 				// console.log(value);
-			}
-		});
+				}
+			});
+		}
 
 
 		// if resulting query exceeds 5000 then fails with ResultTooLargeError
@@ -127,21 +134,63 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
+	// assumption that object will not be null
+	//  returns false if invalid query due to invalid key - field eg skey + mfield and/or incorrect typeof value
+	private checkField(obj: object,initial: boolean): boolean {
+		let result: boolean = initial;
+		let mfield: string[] = ["avg","pass","fail","audit","year"];
+		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
+		let logic: string[] = ["AND","OR"];
+		let mcomparator: string[] = ["EQ","GT","LT"];
+		if (result) {
+			for (let i of Object.keys(obj)) {
+				if (logic.includes(i)) {
+					for (let j of Object.values(obj)) {
+						for (let k of j)  {
+							result = this.checkField(k,result);
+						}
+					}
+				} else if (mcomparator.includes(i)) {
+					for (let j of Object.values(obj)) {
+						if (mfield.includes(Object.keys(j)[0].split("_")[1])) {
+							result = (typeof Object.values(j)[0] === "number");
+						} else {
+							result = false;
+						}
+					}
+
+				} else if (i === "IS") {
+					for (let j of Object.values(obj)) {
+						if (sfield.includes(Object.keys(j)[0].split("_")[1])) {
+							result = (typeof Object.values(j)[0] === "string");
+						} else {
+							result = false;
+						}
+					}
+				} else if (i === "NOT") {
+					for (let j of Object.values(obj)) {
+						result = this.checkField(j,result);
+					}
+				} else {
+					result = false;
+				}
+			}
+		}
+		return result;
+	}
+
 	// returns false if there is a reference to more than 1 dataset
 	private correctDatasetUsage(obj: object, dataId: string,initial: boolean): boolean {
 		let result: boolean = initial;
-		// console.log(obj);
 		if (obj === null) {
 			return result;
 		}
 		if (result) {
 			for (let i of Object.keys(obj)) {
-				// console.log(i);
 				if ((i.includes("_"))) {
 					result = i.split("_")[0] === dataId;
 				} else {
 					for (let j of Object.values(obj)) {
-						// console.log(j);
 						result = this.correctDatasetUsage(j, dataId,result);
 					}
 				}
@@ -155,7 +204,6 @@ export default class InsightFacade implements IInsightFacade {
 		for (let value of Object.values(obj["OPTIONS"]["COLUMNS"])) {
 			let ParsedValue: string = JSON.parse(JSON.stringify(value));
 			if (dataId !== ParsedValue.split("_")[0]) {
-				// console.log(DataId + " " + ParsedValue.split("_")[0]);
 				return true;
 				// return Promise.reject(new InsightError("referenced multiple datasets in COLUMNS"));
 			}
@@ -172,7 +220,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	// returns true if invalid query
-	private checkValidQuery(JsonObj: any): boolean {
+	private checkWhereOptionsColumns(JsonObj: any): boolean {
 		// must contain WHERE and OPTION and only have length of 2 else it will reject with InsightError
 		if (!(Object.keys(JsonObj).includes("WHERE"))
 			|| !(Object.keys(JsonObj).includes("OPTIONS"))
