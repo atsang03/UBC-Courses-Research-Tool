@@ -1,4 +1,5 @@
 export default class Section {
+	private dataID: string;
 	private department: string;
 	private id: string;
 	private average: number;
@@ -11,7 +12,7 @@ export default class Section {
 	private year: number;
 
 	constructor(dept: string, id: string, average: number, instructor: string, title: string,
-		pass: number, fail: number, audit: number, uid: string, year: number) {
+		pass: number, fail: number, audit: number, uid: string, year: number, dataID: string) {
 		this.department = dept;
 		this.id = id;
 		this.average = average;
@@ -22,6 +23,7 @@ export default class Section {
 		this.audit = audit;
 		this.uid = uid;
 		this.year = year;
+		this.dataID = dataID;
 	}
 
 
