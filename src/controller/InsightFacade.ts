@@ -10,6 +10,7 @@ import {
 import Section from "./Section";
 import * as fs from "fs";
 
+
 export default class InsightFacade implements IInsightFacade {
 	private datasetList: any[] = [];
 	private secList: any[] = [];
@@ -43,7 +44,8 @@ export default class InsightFacade implements IInsightFacade {
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => idList.push(element.id));
 		const json = JSON.stringify(this.secList);
-		fs.writeFileSync("data.json" ,JSON.stringify(json));
+		// console.log(json);
+		fs.writeFileSync("data.json" ,json);
 		return Promise.resolve(idList);
 	}
 
@@ -55,57 +57,34 @@ export default class InsightFacade implements IInsightFacade {
 		let JsonObj = JSON.parse(JSON.stringify(query));
 		let result: InsightResult[] = [];
 		let DataId: string;
-		if (this.checkWhereOptionsColumns(JsonObj)) {
-			return Promise.reject(new InsightError("Invalid Query"));
+		let rawData = fs.readFileSync("data.json").toString();
+		const data = JSON.parse(rawData);
+		if (this.checkSizeWhereOptionsColumns(JsonObj)) {
+			return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS or invalid # of keys in sections"));
 		}
-		// section to find what dataId is (from OPTIONS->COLUMNS array  since it can never be empty!)
 		DataId = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
-
-		// check idstring of COLUMNS are all the same and check idstring of ORDER is the same as DataId
-		if (this.checkColumnsAndOrder(JsonObj,DataId)) {
-			return Promise.reject(new InsightError("reference multiple data set in ORDER and/or COLUMNS"));
+		if (this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
+			return Promise.reject(new InsightError("Error in OPTIONS"));
 		}
-
-		// if WHERE does not contain any specification then push objects into result
+		const wantedFields: string[] = this.getWantedFields(JsonObj["OPTIONS"]["COLUMNS"]);
 		if (Object.keys(JsonObj["WHERE"]).length === 0) {
-			result.push();
-		}
-
-		// section to make sure all dataId in WHERE are the same as DataId
-		if (!this.correctDatasetUsage(JsonObj["WHERE"],DataId,true)) {
-			return Promise.reject(new InsightError("referenced multiple datasets in BODY"));
-		}
-
-		if(!this.checkField(JsonObj["WHERE"],true)) {
-			return Promise.reject(new InsightError("Invalid query, improper m/s-field or " +
-				"mismatch typeof for requested field "));
-		}
-
-		// THIS IS FOR TESTING AND LEARNING PURPOSES WILL DELETE LATER
-		{
-			Object.values(JsonObj).forEach(function recursion(key) {
-				let value = JSON.stringify(key);
-				value = JSON.parse(value);
-			// console.log(typeof value);
-			// console.log(value);
-				if (typeof value === "object") {
-				// console.log("It is an object");
-				// console.log(Object.keys(value));
-					Object.values(value).forEach(function (values) {
-						let val = JSON.stringify(values);
-						val = JSON.parse(val);
-						recursion(val);
-					});
-				} else {
-				// console.log(value);
+			for (let i of data) {
+				if (i["dataID"] === DataId) {
+					let obj: InsightResult = this.createInsightResult(i,DataId,wantedFields);
+					result.push(obj);
 				}
-			});
+			}
 		}
-
-
-		// if resulting query exceeds 5000 then fails with ResultTooLargeError
+		if (this.validateWhereSuite(JsonObj,DataId)) {
+			return Promise.reject(new InsightError("error in WHERE"));
+		}
+		for (let obj of data) {
+			if (this.passesRequirements(obj, JsonObj["WHERE"],true)) {
+				result.push(this.createInsightResult(obj, DataId, wantedFields));
+			}
+		}
 		if (result.length > 5000) {
-			return Promise.reject(new ResultTooLargeError());
+			return Promise.reject(new ResultTooLargeError("Result too large"));
 		} else {
 			return Promise.resolve(result);
 		}
@@ -134,9 +113,63 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
+	private passesRequirements(obj: any, query: any,initial: boolean): boolean {
+		let result: boolean = initial;
+		let mfield: string[] = ["avg","pass","fail","audit","year"];
+		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
+		let logic: string[] = ["AND","OR"];
+		let mcomparator: string[] = ["EQ","GT","LT"];
+
+		for (let key of Object.keys(query)) {
+			if (logic.includes(key)) {
+				for (let i of Object.values(query)) {
+					result = this.logicHandler(obj,i,key,result);
+				}
+			} else if (mcomparator.includes(key)) {
+				result = this.mcomparatorHandler(obj,Object.values(query),key);
+			}
+		}
+
+
+		return result;
+	}
+
+	private mcomparatorHandler(obj: any,query: any, key: string): boolean {
+		let result: boolean;
+		const score: number = Number(Object.values(query[0])[0]);
+		if (key === "GT") {
+			result = obj[Object.keys(query[0])[0].split("_")[1]] > score;
+		} else if (key === "EQ") {
+			result = obj[Object.keys(query[0])[0].split("_")[1]] === score;
+		} else {
+			result = obj[Object.keys(query[0])[0].split("_")[1]] < score;
+		}
+		return result;
+	}
+
+	private logicHandler(obj: any, query: any, key: string, initial: boolean): boolean {
+		console.log(query[0]);
+		return false;
+	}
+
+	// returns true if it fails validating WHERE
+	private validateWhereSuite(obj: object, dataId: string): boolean {
+		let JsonObj = JSON.parse(JSON.stringify(obj));
+		if (!this.referenceOnlyOneDataSet(JsonObj["WHERE"],dataId,true)) {
+			return true;
+		}
+
+		if(!this.checkFieldInWhere(JsonObj["WHERE"],true)) {
+			return true;
+		}
+
+		return false;
+	}
+
+
 	// assumption that object will not be null
 	//  returns false if invalid query due to invalid key - field eg skey + mfield and/or incorrect typeof value
-	private checkField(obj: object,initial: boolean): boolean {
+	private checkFieldInWhere(obj: object,initial: boolean): boolean {
 		let result: boolean = initial;
 		let mfield: string[] = ["avg","pass","fail","audit","year"];
 		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
@@ -147,7 +180,7 @@ export default class InsightFacade implements IInsightFacade {
 				if (logic.includes(i)) {
 					for (let j of Object.values(obj)) {
 						for (let k of j)  {
-							result = this.checkField(k,result);
+							result = this.checkFieldInWhere(k,result);
 						}
 					}
 				} else if (mcomparator.includes(i)) {
@@ -169,7 +202,7 @@ export default class InsightFacade implements IInsightFacade {
 					}
 				} else if (i === "NOT") {
 					for (let j of Object.values(obj)) {
-						result = this.checkField(j,result);
+						result = this.checkFieldInWhere(j,result);
 					}
 				} else {
 					result = false;
@@ -180,7 +213,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	// returns false if there is a reference to more than 1 dataset
-	private correctDatasetUsage(obj: object, dataId: string,initial: boolean): boolean {
+	private referenceOnlyOneDataSet(obj: object, dataId: string,initial: boolean): boolean {
 		let result: boolean = initial;
 		if (obj === null) {
 			return result;
@@ -191,7 +224,7 @@ export default class InsightFacade implements IInsightFacade {
 					result = i.split("_")[0] === dataId;
 				} else {
 					for (let j of Object.values(obj)) {
-						result = this.correctDatasetUsage(j, dataId,result);
+						result = this.referenceOnlyOneDataSet(j, dataId,result);
 					}
 				}
 			}
@@ -199,19 +232,22 @@ export default class InsightFacade implements IInsightFacade {
 		return result;
 	}
 
-	// return true if COLUMNS and/or ORDER references multiple datasets
-	private checkColumnsAndOrder(obj: any, dataId: string): boolean {
+	// return true if COLUMNS and/or ORDER references multiple datasets or invalid fields
+	private checkColumnsAndOrderDataSetReferences(obj: any, dataId: string): boolean {
+		let mfield: string[] = ["avg","pass","fail","audit","year"];
+		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
 		for (let value of Object.values(obj["OPTIONS"]["COLUMNS"])) {
 			let ParsedValue: string = JSON.parse(JSON.stringify(value));
-			if (dataId !== ParsedValue.split("_")[0]) {
+			if (dataId !== ParsedValue.split("_")[0] ||
+				!(mfield.includes(ParsedValue.split("_")[1]) ||
+				sfield.includes(ParsedValue.split("_")[1]))) {
 				return true;
-				// return Promise.reject(new InsightError("referenced multiple datasets in COLUMNS"));
 			}
 		}
-		// check idstring of ORDER is the same as DataId
+		// check idstring of ORDER is the same as DataId and it is included in COLUMNS and if COLUMNS includes ORDER
 		if (Object.keys(obj["OPTIONS"]).includes("ORDER")) {
 			let value: string = obj["OPTIONS"]["ORDER"];
-			if (dataId !== value.split("_")[0]) {
+			if (dataId !== value.split("_")[0] || !Object.values(obj["OPTIONS"]["COLUMNS"]).includes(value)) {
 				return true;
 				// return Promise.reject(new InsightError("referenced multiple datasets in ORDER"));
 			}
@@ -220,7 +256,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	// returns true if invalid query
-	private checkWhereOptionsColumns(JsonObj: any): boolean {
+	private checkSizeWhereOptionsColumns(JsonObj: any): boolean {
 		// must contain WHERE and OPTION and only have length of 2 else it will reject with InsightError
 		if (!(Object.keys(JsonObj).includes("WHERE"))
 			|| !(Object.keys(JsonObj).includes("OPTIONS"))
@@ -243,5 +279,21 @@ export default class InsightFacade implements IInsightFacade {
 		}
 
 		return false;
+	}
+
+	private getWantedFields(obj: string[]): string[] {
+		let result: string[] = [];
+		for (let i of obj) {
+			result.push(i.split("_")[1]);
+		}
+		return result;
+	}
+
+	private createInsightResult(data: any, DataId: string, wantedFields: string[]): InsightResult {
+		let result: InsightResult = {};
+		for (let i of wantedFields) {
+			result[DataId + "_" + i] = data[i];
+		}
+		return result;
 	}
 }
