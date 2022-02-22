@@ -70,6 +70,7 @@ describe("InsightFacade", function () {
 	function assertResult(actual: any, expected: any): void {
 		expect(actual).to.have.deep.members(expected);
 		expect(actual).to.have.length(expected.length);
+		expect(actual).to.be.increases;
 	}
 
 	/*

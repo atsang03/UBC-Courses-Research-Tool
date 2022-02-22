@@ -1,0 +1,20 @@
+{
+	"title": "referencing not yet added data set",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": "99"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"room_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_id"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

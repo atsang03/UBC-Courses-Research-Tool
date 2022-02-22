@@ -1,0 +1,20 @@
+{
+	"title": "ORDER does not contain a field listed in COLUMNS",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 99
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_pass"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

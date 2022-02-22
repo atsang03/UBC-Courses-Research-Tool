@@ -3,7 +3,6 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError,
 	InsightResult, NotFoundError, ResultTooLargeError} from "./IInsightFacade";
 import Section from "./Section";
 import * as fs from "fs";
-
 export default class InsightFacade implements IInsightFacade {
 	private datasetList: any[] = [];
 	private secList: any[] = [];
@@ -17,9 +16,8 @@ export default class InsightFacade implements IInsightFacade {
 		let counter: number = 0;
 		const aPromise = await zip.loadAsync(content, {base64: true});
 		aPromise.folder("courses")?.forEach((async (relativePath, file) => {
-			let jFile: any;
 			promises.push(file.async("string").then((filecontent) => {
-				jFile = JSON.parse(filecontent);
+				let jFile: any = JSON.parse(filecontent);
 				for (const element of  jFile.result) {
 					if (element.Section !== null) {
 						counter++;
@@ -30,12 +28,10 @@ export default class InsightFacade implements IInsightFacade {
 				}
 			}));
 		}));
-		await aPromise;
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => idList.push(element.id));
-		const json = JSON.stringify(this.secList);
-		fs.writeFileSync("data.json" ,json);
+		fs.writeFileSync("data.json" ,JSON.stringify(this.secList));
 		return Promise.resolve(idList);
 	}
 
@@ -48,14 +44,21 @@ export default class InsightFacade implements IInsightFacade {
 		let result: InsightResult[] = [];
 		let rawData = fs.readFileSync("data.json").toString();
 		const data = JSON.parse(rawData);
+		let listOfID: string[] = [];
 		if (this.checkSizeWhereOptionsColumns(JsonObj)) {
 			return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS or invalid # of keys in sections"));
 		}
 		let DataId: string = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
-		if (this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
-			return Promise.reject(new InsightError("Error in OPTIONS"));
+		for (let i of data) {
+			listOfID.push(i["dataID"]);
 		}
-		const wantedFields: string[] = this.getWantedFields(JsonObj["OPTIONS"]["COLUMNS"]);
+		if (!listOfID.includes(DataId) || this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
+			return Promise.reject(new InsightError("Referencing not yet added Dataset or error in OPTIONS"));
+		}
+		const wantedFields: string[] = [];
+		for (let i of JsonObj["OPTIONS"]["COLUMNS"]) {
+			wantedFields.push(i.split("_")[1]);
+		}
 		if (Object.keys(JsonObj["WHERE"]).length === 0) {
 			for (let i of data) {
 				if (i["dataID"] === DataId) {
@@ -63,8 +66,7 @@ export default class InsightFacade implements IInsightFacade {
 					result.push(obj);
 				}
 			}
-		}
-		if (this.validateWhereSuite(JsonObj,DataId)) {
+		} else if (this.validateWhereSuite(JsonObj,DataId)) {
 			return Promise.reject(new InsightError("error in WHERE"));
 		}
 		for (let obj of data) {
@@ -75,7 +77,6 @@ export default class InsightFacade implements IInsightFacade {
 		if (result.length > 5000) {
 			return Promise.reject(new ResultTooLargeError("Result too large"));
 		}
-
 		return Promise.resolve(this.sortBy(result,JsonObj["OPTIONS"]));
 	}
 
@@ -85,8 +86,7 @@ export default class InsightFacade implements IInsightFacade {
 			return list.sort(function(a,b): number {
 				if (a[sorter] > b[sorter]) {
 					return 1;
-				}
-				if (a[sorter] < b[sorter]) {
+				} else if (a[sorter] < b[sorter]) {
 					return -1;
 				}
 				return 0;
@@ -98,8 +98,7 @@ export default class InsightFacade implements IInsightFacade {
 	public removeDataset(id: string): Promise<string> {
 		if (id.includes("_")) {
 			throw new InsightError("invalid id");
-		}
-		if (this.datasetList.every((element) => {
+		} else if (this.datasetList.every((element) => {
 			return !(element.id === id);
 		})) {
 			throw new NotFoundError("No dataset with this id found");
@@ -108,8 +107,7 @@ export default class InsightFacade implements IInsightFacade {
 			if (element.id === id) {
 				element.remove();
 			}
-		}
-		);
+		});
 		this.secList.forEach((element) => {
 			if (element.dataID === id) {
 				element.remove();
@@ -124,7 +122,6 @@ export default class InsightFacade implements IInsightFacade {
 		let mcomparator: string[] = ["EQ","GT","LT"];
 		for (let key of Object.keys(query)) {
 			if (logic.includes(key)) {
-
 				for (let i of Object.values(query)) {
 					result = this.logicHandler(obj,i,key,result);
 				}
@@ -142,10 +139,7 @@ export default class InsightFacade implements IInsightFacade {
 	private scomparisonHandler(obj: any, query: any): boolean {
 		const skeyField = Object.keys(query)[0].split("_")[1];
 		const desiredIs: string = String(Object.values(query)[0]);
-		if (obj[skeyField] === desiredIs) {
-			return true;
-		}
-		return false;
+		return obj[skeyField] === desiredIs;
 	}
 
 	private mcomparatorHandler(obj: any,query: any, key: string): boolean {
@@ -157,7 +151,6 @@ export default class InsightFacade implements IInsightFacade {
 		} else {
 			return obj[Object.keys(query[0])[0].split("_")[1]] < score;
 		}
-		return false;
 	}
 
 	private logicHandler(obj: any, query: any, key: string, initial: boolean): boolean {
@@ -167,22 +160,20 @@ export default class InsightFacade implements IInsightFacade {
 			for (let i of query) {
 				resultList.push(this.passesRequirements(obj,i,result));
 			}
-			result = resultList.every(Boolean);
-		} else if (key === "OR") {
+			return resultList.every(Boolean);
+		} else {
 			for (let i of query) {
 				resultList.push(this.passesRequirements(obj,i,result));
 			}
-			result = resultList.includes(true);
+			return resultList.includes(true);
 		}
-		return result;
 	}
 
 	private validateWhereSuite(obj: object, dataId: string): boolean {
 		let JsonObj = JSON.parse(JSON.stringify(obj));
 		if (!this.referenceOnlyOneDataSet(JsonObj["WHERE"],dataId,true)) {
 			return true;
-		}
-		if(!this.checkFieldInWhere(JsonObj["WHERE"],true)) {
+		} else if(!this.checkFieldInWhere(JsonObj["WHERE"],true)) {
 			return true;
 		}
 		return false;
@@ -234,8 +225,7 @@ export default class InsightFacade implements IInsightFacade {
 		let result: boolean = initial;
 		if (obj === null) {
 			return result;
-		}
-		if (result) {
+		} else if (result) {
 			for (let i of Object.keys(obj)) {
 				if ((i.includes("_"))) {
 					result = i.split("_")[0] === dataId;
@@ -256,38 +246,22 @@ export default class InsightFacade implements IInsightFacade {
 			let ParsedValue: string = JSON.parse(JSON.stringify(value));
 			if (dataId !== ParsedValue.split("_")[0] ||
 				!(mfield.includes(ParsedValue.split("_")[1]) ||
-				sfield.includes(ParsedValue.split("_")[1]))) {
+					sfield.includes(ParsedValue.split("_")[1]))) {
 				return true;
 			}
 		}
 		if (Object.keys(obj["OPTIONS"]).includes("ORDER")) {
 			let value: string = obj["OPTIONS"]["ORDER"];
-			if (dataId !== value.split("_")[0] || !Object.values(obj["OPTIONS"]["COLUMNS"]).includes(value)) {
-				return true;
-			}
+			return (dataId !== value.split("_")[0] ||
+				!Object.values(obj["OPTIONS"]["COLUMNS"]).includes(value));
 		}
 		return false;
 	}
 
 	private checkSizeWhereOptionsColumns(JsonObj: any): boolean {
-		if (!(Object.keys(JsonObj).includes("WHERE")) || !(Object.keys(JsonObj).includes("OPTIONS"))
-			|| !(Object.keys(JsonObj).length === 2)
-		) {
-			return true;
-		}
-		if(!Object.keys(JsonObj["OPTIONS"]).includes("COLUMNS") || !(Object.keys(JsonObj["OPTIONS"]).length <= 2)
-			|| (Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0)) {
-			return true;
-		}
-		return false;
-	}
-
-	private getWantedFields(obj: string[]): string[] {
-		let result: string[] = [];
-		for (let i of obj) {
-			result.push(i.split("_")[1]);
-		}
-		return result;
+		return !Object.keys(JsonObj["OPTIONS"]).includes("COLUMNS") || !(Object.keys(JsonObj["OPTIONS"]).length <= 2)
+			|| (Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0 || !(Object.keys(JsonObj).includes("WHERE"))
+				|| !(Object.keys(JsonObj).includes("OPTIONS")) || !(Object.keys(JsonObj).length === 2));
 	}
 
 	private createInsightResult(data: any, DataId: string, wantedFields: string[]): InsightResult {
