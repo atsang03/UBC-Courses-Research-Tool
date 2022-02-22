@@ -67,6 +67,11 @@ describe("InsightFacade", function () {
 		});
 	});
 
+	function assertResult(actual: any, expected: any): void {
+		expect(actual).to.have.deep.members(expected);
+		expect(actual).to.have.length(expected.length);
+	}
+
 	/*
 	 * This test suite dynamically generates tests from the JSON files in test/queries.
 	 * You should not need to modify it; instead, add additional files to the queries directory.
@@ -98,6 +103,7 @@ describe("InsightFacade", function () {
 			(input) => insightFacade.performQuery(input),
 			"./test/resources/queries",
 			{
+				assertOnResult: assertResult,
 				errorValidator: (error): error is PQErrorKind =>
 					error === "ResultTooLargeError" || error === "InsightError",
 				assertOnError(actual, expected) {

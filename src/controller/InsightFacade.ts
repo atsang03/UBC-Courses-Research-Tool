@@ -1,20 +1,12 @@
 import JSZip, {loadAsync} from "jszip";
-import {
-	IInsightFacade,
-	InsightDataset,
-	InsightDatasetKind,
-	InsightError,
-	InsightResult,
-	NotFoundError, ResultTooLargeError
-} from "./IInsightFacade";
+import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError,
+	InsightResult, NotFoundError, ResultTooLargeError} from "./IInsightFacade";
 import Section from "./Section";
 import * as fs from "fs";
-
 
 export default class InsightFacade implements IInsightFacade {
 	private datasetList: any[] = [];
 	private secList: any[] = [];
-
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		if (id.includes("_")) {
 			throw new InsightError("invalid id");
@@ -25,7 +17,6 @@ export default class InsightFacade implements IInsightFacade {
 		let counter: number = 0;
 		const aPromise = await zip.loadAsync(content, {base64: true});
 		aPromise.folder("courses")?.forEach((async (relativePath, file) => {
-				// For each Zip object
 			let jFile: any;
 			promises.push(file.async("string").then((filecontent) => {
 				jFile = JSON.parse(filecontent);
@@ -44,7 +35,6 @@ export default class InsightFacade implements IInsightFacade {
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => idList.push(element.id));
 		const json = JSON.stringify(this.secList);
-		// console.log(json);
 		fs.writeFileSync("data.json" ,json);
 		return Promise.resolve(idList);
 	}
@@ -56,13 +46,12 @@ export default class InsightFacade implements IInsightFacade {
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		let JsonObj = JSON.parse(JSON.stringify(query));
 		let result: InsightResult[] = [];
-		let DataId: string;
 		let rawData = fs.readFileSync("data.json").toString();
 		const data = JSON.parse(rawData);
 		if (this.checkSizeWhereOptionsColumns(JsonObj)) {
 			return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS or invalid # of keys in sections"));
 		}
-		DataId = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
+		let DataId: string = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
 		if (this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
 			return Promise.reject(new InsightError("Error in OPTIONS"));
 		}
@@ -85,9 +74,25 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		if (result.length > 5000) {
 			return Promise.reject(new ResultTooLargeError("Result too large"));
-		} else {
-			return Promise.resolve(result);
 		}
+
+		return Promise.resolve(this.sortBy(result,JsonObj["OPTIONS"]));
+	}
+
+	private sortBy(list: InsightResult[], query: any): InsightResult[] {
+		if (Object.keys(query).includes("ORDER")) {
+			let sorter: string = query["ORDER"];
+			return list.sort(function(a,b): number {
+				if (a[sorter] > b[sorter]) {
+					return 1;
+				}
+				if (a[sorter] < b[sorter]) {
+					return -1;
+				}
+				return 0;
+			});
+		}
+		return list;
 	}
 
 	public removeDataset(id: string): Promise<string> {
@@ -115,60 +120,74 @@ export default class InsightFacade implements IInsightFacade {
 
 	private passesRequirements(obj: any, query: any,initial: boolean): boolean {
 		let result: boolean = initial;
-		let mfield: string[] = ["avg","pass","fail","audit","year"];
-		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
 		let logic: string[] = ["AND","OR"];
 		let mcomparator: string[] = ["EQ","GT","LT"];
-
 		for (let key of Object.keys(query)) {
 			if (logic.includes(key)) {
+
 				for (let i of Object.values(query)) {
 					result = this.logicHandler(obj,i,key,result);
 				}
 			} else if (mcomparator.includes(key)) {
 				result = this.mcomparatorHandler(obj,Object.values(query),key);
+			} else if (key === "NOT") {
+				result = !this.passesRequirements(obj,query["NOT"],result);
+			} else if (key === "IS") {
+				result = this.scomparisonHandler(obj,query["IS"]);
 			}
 		}
-
-
 		return result;
 	}
 
-	private mcomparatorHandler(obj: any,query: any, key: string): boolean {
-		let result: boolean;
-		const score: number = Number(Object.values(query[0])[0]);
-		if (key === "GT") {
-			result = obj[Object.keys(query[0])[0].split("_")[1]] > score;
-		} else if (key === "EQ") {
-			result = obj[Object.keys(query[0])[0].split("_")[1]] === score;
-		} else {
-			result = obj[Object.keys(query[0])[0].split("_")[1]] < score;
+	private scomparisonHandler(obj: any, query: any): boolean {
+		const skeyField = Object.keys(query)[0].split("_")[1];
+		const desiredIs: string = String(Object.values(query)[0]);
+		if (obj[skeyField] === desiredIs) {
+			return true;
 		}
-		return result;
-	}
-
-	private logicHandler(obj: any, query: any, key: string, initial: boolean): boolean {
-		console.log(query[0]);
 		return false;
 	}
 
-	// returns true if it fails validating WHERE
+	private mcomparatorHandler(obj: any,query: any, key: string): boolean {
+		const score: number = Number(Object.values(query[0])[0]);
+		if (key === "GT") {
+			return obj[Object.keys(query[0])[0].split("_")[1]] > score;
+		} else if (key === "EQ") {
+			return obj[Object.keys(query[0])[0].split("_")[1]] === score;
+		} else {
+			return obj[Object.keys(query[0])[0].split("_")[1]] < score;
+		}
+		return false;
+	}
+
+	private logicHandler(obj: any, query: any, key: string, initial: boolean): boolean {
+		let resultList: boolean[] = [];
+		let result = initial;
+		if (key === "AND") {
+			for (let i of query) {
+				resultList.push(this.passesRequirements(obj,i,result));
+			}
+			result = resultList.every(Boolean);
+		} else if (key === "OR") {
+			for (let i of query) {
+				resultList.push(this.passesRequirements(obj,i,result));
+			}
+			result = resultList.includes(true);
+		}
+		return result;
+	}
+
 	private validateWhereSuite(obj: object, dataId: string): boolean {
 		let JsonObj = JSON.parse(JSON.stringify(obj));
 		if (!this.referenceOnlyOneDataSet(JsonObj["WHERE"],dataId,true)) {
 			return true;
 		}
-
 		if(!this.checkFieldInWhere(JsonObj["WHERE"],true)) {
 			return true;
 		}
-
 		return false;
 	}
 
-
-	// assumption that object will not be null
-	//  returns false if invalid query due to invalid key - field eg skey + mfield and/or incorrect typeof value
 	private checkFieldInWhere(obj: object,initial: boolean): boolean {
 		let result: boolean = initial;
 		let mfield: string[] = ["avg","pass","fail","audit","year"];
@@ -191,7 +210,6 @@ export default class InsightFacade implements IInsightFacade {
 							result = false;
 						}
 					}
-
 				} else if (i === "IS") {
 					for (let j of Object.values(obj)) {
 						if (sfield.includes(Object.keys(j)[0].split("_")[1])) {
@@ -212,7 +230,6 @@ export default class InsightFacade implements IInsightFacade {
 		return result;
 	}
 
-	// returns false if there is a reference to more than 1 dataset
 	private referenceOnlyOneDataSet(obj: object, dataId: string,initial: boolean): boolean {
 		let result: boolean = initial;
 		if (obj === null) {
@@ -232,7 +249,6 @@ export default class InsightFacade implements IInsightFacade {
 		return result;
 	}
 
-	// return true if COLUMNS and/or ORDER references multiple datasets or invalid fields
 	private checkColumnsAndOrderDataSetReferences(obj: any, dataId: string): boolean {
 		let mfield: string[] = ["avg","pass","fail","audit","year"];
 		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
@@ -244,40 +260,25 @@ export default class InsightFacade implements IInsightFacade {
 				return true;
 			}
 		}
-		// check idstring of ORDER is the same as DataId and it is included in COLUMNS and if COLUMNS includes ORDER
 		if (Object.keys(obj["OPTIONS"]).includes("ORDER")) {
 			let value: string = obj["OPTIONS"]["ORDER"];
 			if (dataId !== value.split("_")[0] || !Object.values(obj["OPTIONS"]["COLUMNS"]).includes(value)) {
 				return true;
-				// return Promise.reject(new InsightError("referenced multiple datasets in ORDER"));
 			}
 		}
 		return false;
 	}
 
-	// returns true if invalid query
 	private checkSizeWhereOptionsColumns(JsonObj: any): boolean {
-		// must contain WHERE and OPTION and only have length of 2 else it will reject with InsightError
-		if (!(Object.keys(JsonObj).includes("WHERE"))
-			|| !(Object.keys(JsonObj).includes("OPTIONS"))
+		if (!(Object.keys(JsonObj).includes("WHERE")) || !(Object.keys(JsonObj).includes("OPTIONS"))
 			|| !(Object.keys(JsonObj).length === 2)
 		) {
 			return true;
-			// return Promise.reject(new InsightError("Does not contain either WHERE/OPTIONS or has too many keys"));
 		}
-
-		// must contain COLUMNS inside OPTIONS and has <= 2 keys else it throws an InsightError
-		if(!Object.keys(JsonObj["OPTIONS"]).includes("COLUMNS") || !(Object.keys(JsonObj["OPTIONS"]).length <= 2)) {
+		if(!Object.keys(JsonObj["OPTIONS"]).includes("COLUMNS") || !(Object.keys(JsonObj["OPTIONS"]).length <= 2)
+			|| (Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0)) {
 			return true;
-			// return Promise.reject(new InsightError("Does not contain columns"));
 		}
-
-		// OPTIONS->COLUMNS array  must not be empty or else throw InsightError
-		if (Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0) {
-			return true;
-			// Promise.reject(new InsightError("COLUMNS array can not be empty"));
-		}
-
 		return false;
 	}
 
