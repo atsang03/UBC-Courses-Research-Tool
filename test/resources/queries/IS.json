@@ -1,0 +1,33 @@
+{
+	"title": "course Id is 558",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"courses_id": "558"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"expected": [{"courses_dept":"frst","courses_id":"558","courses_avg":83.25},{"courses_dept":"frst",
+		"courses_id":"558","courses_avg":83.25},{"courses_dept":"audi","courses_id":"558","courses_avg":84.33},
+		{"courses_dept":"audi","courses_id":"558","courses_avg":84.33},{"courses_dept":"audi","courses_id":"558",
+			"courses_avg":84.36},{"courses_dept":"audi","courses_id":"558","courses_avg":84.36},{"courses_dept":"frst",
+			"courses_id":"558","courses_avg":84.93},{"courses_dept":"frst","courses_id":"558","courses_avg":84.93},
+		{"courses_dept":"frst","courses_id":"558","courses_avg":85.73},{"courses_dept":"frst","courses_id":"558",
+			"courses_avg":85.73},{"courses_dept":"audi","courses_id":"558","courses_avg":86.07},{"courses_dept":"audi",
+			"courses_id":"558","courses_avg":86.07},{"courses_dept":"frst","courses_id":"558","courses_avg":87.14},
+		{"courses_dept":"frst","courses_id":"558","courses_avg":87.14},{"courses_dept":"audi","courses_id":"558",
+			"courses_avg":87.8},{"courses_dept":"audi","courses_id":"558","courses_avg":87.8},
+		{"courses_dept":"audi","courses_id":"558","courses_avg":92.44},{"courses_dept":"audi","courses_id":"558",
+			"courses_avg":92.44},{"courses_dept":"audi","courses_id":"558","courses_avg":92.92},{"courses_dept":"audi",
+			"courses_id":"558","courses_avg":92.92},{"courses_dept":"audi","courses_id":"558","courses_avg":93.09},
+		{"courses_dept":"audi","courses_id":"558","courses_avg":93.09},{"courses_dept":"audi","courses_id":"558",
+			"courses_avg":93.79},{"courses_dept":"audi","courses_id":"558","courses_avg":93.79}]
+}

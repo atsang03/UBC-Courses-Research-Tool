@@ -1,27 +1,29 @@
 export default class Section {
-	private department: string;
+	private dataID: string;
+	private dept: string;
 	private id: string;
-	private average: number;
+	private avg: number;
 	private instructor: string;
 	private title: string;
 	private pass: number;
 	private fail: number;
 	private audit: number;
-	private uid: string;
+	private uuid: string;
 	private year: number;
 
 	constructor(dept: string, id: string, average: number, instructor: string, title: string,
-		pass: number, fail: number, audit: number, uid: string, year: number) {
-		this.department = dept;
+		pass: number, fail: number, audit: number, uid: string, year: number, dataID: string) {
+		this.dept = dept;
 		this.id = id;
-		this.average = average;
+		this.avg = average;
 		this.instructor = instructor;
 		this.title = title;
 		this.pass = pass;
 		this.fail = fail;
 		this.audit = audit;
-		this.uid = uid;
+		this.uuid = uid;
 		this.year = year;
+		this.dataID = dataID;
 	}
 
 

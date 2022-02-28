@@ -1,0 +1,20 @@
+{
+	"title": "Invalid too many results",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"courses_avg": 99
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_id"
+		}
+	},
+	"errorExpected": true,
+	"expected": "ResultTooLargeError"
+}
