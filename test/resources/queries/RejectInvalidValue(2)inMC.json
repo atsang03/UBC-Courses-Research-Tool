@@ -1,0 +1,31 @@
+{
+	"title": "second pair in MComparison has invalid value",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"courses_avg":97,
+						"courses_avg":95
+					}
+				},
+				{
+					"LT": {
+						"courses_avg":99,
+						"courses_avg":"test"
+					}
+				}
+
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_dept"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

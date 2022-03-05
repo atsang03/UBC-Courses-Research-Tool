@@ -1,0 +1,19 @@
+{
+  "title" : "missing COLUMNS",
+  "input" : {
+    "WHERE": {
+      "EQ": {
+        "courses_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "a": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected" : true,
+  "expected" : "InsightError"
+}

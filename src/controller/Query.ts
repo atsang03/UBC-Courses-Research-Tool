@@ -1,5 +1,6 @@
 import {InsightError, InsightResult, ResultTooLargeError} from "./IInsightFacade";
 import fs from "fs";
+import QueryValidator from "./QueryValidator";
 
 export default  class Query {
 	private query: unknown;
@@ -13,23 +14,12 @@ export default  class Query {
 		let rawData = fs.readFileSync("data/data.json").toString();
 		const data = JSON.parse(rawData);
 		let listOfID: string[] = [];
-		if (this.checkSizeWhereOptionsColumns(JsonObj)) {
-			return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS or invalid # of keys in sections"));
+		let wantedFields: string[] = [];
+		let queryValidator: QueryValidator = new QueryValidator(JsonObj,data,listOfID,wantedFields);
+		if (queryValidator.validation(JsonObj,data,listOfID,wantedFields)) {
+			return Promise.reject(new InsightError());
 		}
 		let DataId: string = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
-		for (let i of data) {
-			listOfID.push(i["dataID"]);
-		}
-		if (!listOfID.includes(DataId) || this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
-			return Promise.reject(new InsightError("Referencing not yet added Dataset or error in OPTIONS"));
-		}
-		const wantedFields: string[] = [];
-		for (let i of JsonObj["OPTIONS"]["COLUMNS"]) {
-			wantedFields.push(i.split("_")[1]);
-		}
-		if (this.validateWhereSuite(JsonObj,DataId)) {
-			return Promise.reject(new InsightError("error in WHERE"));
-		}
 		if (Object.keys(JsonObj["WHERE"]).length === 0) {
 			for (let i of data) {
 				if (i["dataID"] === DataId) {
@@ -117,102 +107,6 @@ export default  class Query {
 		}
 	}
 
-	private validateWhereSuite(obj: object, dataId: string): boolean {
-		let JsonObj = JSON.parse(JSON.stringify(obj));
-		if (JSON.stringify(JsonObj["WHERE"]) === "{}") {
-			return false;
-		} else if (!this.referenceOnlyOneDataSet(JsonObj["WHERE"],dataId,true)) {
-			return true;
-		} else if(!this.checkFieldInWhere(JsonObj["WHERE"],true)) {
-			return true;
-		}
-		return false;
-	}
-
-	private checkFieldInWhere(obj: object,initial: boolean): boolean {
-		let result: boolean = initial;
-		let mfield: string[] = ["avg","pass","fail","audit","year"];
-		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
-		let logic: string[] = ["AND","OR"];
-		let mcomparator: string[] = ["EQ","GT","LT"];
-		if (result) {
-			for (let i of Object.keys(obj)) {
-				if (logic.includes(i)) {
-					for (let j of Object.values(obj)) {
-						for (let k of j)  {
-							result = this.checkFieldInWhere(k,result);
-						}
-					}
-				} else if (mcomparator.includes(i)) {
-					for (let j of Object.values(obj)) {
-						if (mfield.includes(Object.keys(j)[0].split("_")[1])) {
-							result = (typeof Object.values(j)[0] === "number");
-						} else {
-							result = false;
-						}
-					}
-				} else if (i === "IS") {
-					for (let j of Object.values(obj)) {
-						if (sfield.includes(Object.keys(j)[0].split("_")[1])) {
-							result = (typeof Object.values(j)[0] === "string");
-						} else {
-							result = false;
-						}
-					}
-				} else if (i === "NOT") {
-					for (let j of Object.values(obj)) {
-						result = this.checkFieldInWhere(j,result);
-					}
-				} else {
-					result = false;
-				}
-			}
-		}
-		return result;
-	}
-
-	private referenceOnlyOneDataSet(obj: object, dataId: string,initial: boolean): boolean {
-		let result: boolean = initial;
-		if (obj === null) {
-			return result;
-		} else if (result) {
-			for (let i of Object.keys(obj)) {
-				if ((i.includes("_"))) {
-					result = i.split("_")[0] === dataId;
-				} else {
-					for (let j of Object.values(obj)) {
-						result = this.referenceOnlyOneDataSet(j, dataId,result);
-					}
-				}
-			}
-		}
-		return result;
-	}
-
-	private checkColumnsAndOrderDataSetReferences(obj: any, dataId: string): boolean {
-		let mfield: string[] = ["avg","pass","fail","audit","year"];
-		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
-		for (let value of Object.values(obj["OPTIONS"]["COLUMNS"])) {
-			let ParsedValue: string = JSON.parse(JSON.stringify(value));
-			if (dataId !== ParsedValue.split("_")[0] ||
-				!(mfield.includes(ParsedValue.split("_")[1]) ||
-					sfield.includes(ParsedValue.split("_")[1]))) {
-				return true;
-			}
-		}
-		if (Object.keys(obj["OPTIONS"]).includes("ORDER")) {
-			let value: string = obj["OPTIONS"]["ORDER"];
-			return (dataId !== value.split("_")[0] ||
-				!Object.values(obj["OPTIONS"]["COLUMNS"]).includes(value));
-		}
-		return false;
-	}
-
-	private checkSizeWhereOptionsColumns(JsonObj: any): boolean {
-		return !Object.keys(JsonObj["OPTIONS"]).includes("COLUMNS") || !(Object.keys(JsonObj["OPTIONS"]).length <= 2)
-			|| (Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0 || !(Object.keys(JsonObj).includes("WHERE"))
-				|| !(Object.keys(JsonObj).includes("OPTIONS")) || !(Object.keys(JsonObj).length === 2));
-	}
 
 	private createInsightResult(data: any, DataId: string, wantedFields: string[]): InsightResult {
 		let result: InsightResult = {};

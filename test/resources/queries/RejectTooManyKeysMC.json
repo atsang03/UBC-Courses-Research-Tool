@@ -1,0 +1,30 @@
+{
+	"title": "Too many keys in mcomparison",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"courses_avg":97,
+						"courses_fail":100
+					}
+				},
+				{
+					"LT": {
+						"courses_avg":99
+					}
+				}
+
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

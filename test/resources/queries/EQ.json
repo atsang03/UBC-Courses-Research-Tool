@@ -1,0 +1,566 @@
+{
+	"title": "test EQ",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"courses_pass": 97
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_pass",
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_dept"
+		}
+	},
+	"expected": [
+		{
+			"courses_pass": 97,
+			"courses_dept": "apsc",
+			"courses_avg": 76.22
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "apsc",
+			"courses_avg": 76.22
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "apsc",
+			"courses_avg": 76.64
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "apsc",
+			"courses_avg": 76.64
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "astu",
+			"courses_avg": 70.3
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "astu",
+			"courses_avg": 70.3
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "astu",
+			"courses_avg": 68.32
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "astu",
+			"courses_avg": 68.32
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "bahr",
+			"courses_avg": 80.13
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "biol",
+			"courses_avg": 66.4
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "busi",
+			"courses_avg": 64.55
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "busi",
+			"courses_avg": 72.82
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "busi",
+			"courses_avg": 66.72
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "busi",
+			"courses_avg": 72.11
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chbe",
+			"courses_avg": 69.74
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chbe",
+			"courses_avg": 69.74
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chbe",
+			"courses_avg": 67.29
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chbe",
+			"courses_avg": 67.29
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chem",
+			"courses_avg": 74
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chem",
+			"courses_avg": 74
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chem",
+			"courses_avg": 68.19
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "chem",
+			"courses_avg": 68.19
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "clst",
+			"courses_avg": 72.9
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 72.33
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 74.39
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 81.9
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 80.33
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 73.57
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 72.91
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 70.5
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 70.92
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 79.66
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "comm",
+			"courses_avg": 81.58
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "cpsc",
+			"courses_avg": 72.53
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "cpsc",
+			"courses_avg": 77.63
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "crwr",
+			"courses_avg": 82.8
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 68.44
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 63.83
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 72.65
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 71.93
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 71.93
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 71.71
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 83.19
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "econ",
+			"courses_avg": 83.19
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "engl",
+			"courses_avg": 68.09
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "engl",
+			"courses_avg": 71.39
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "engl",
+			"courses_avg": 76.21
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "engl",
+			"courses_avg": 73.13
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "eosc",
+			"courses_avg": 73.41
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "eosc",
+			"courses_avg": 73.63
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "eosc",
+			"courses_avg": 73.63
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "eosc",
+			"courses_avg": 78.09
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fist",
+			"courses_avg": 73.66
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fist",
+			"courses_avg": 84.15
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fist",
+			"courses_avg": 84.15
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fmst",
+			"courses_avg": 72.28
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fmst",
+			"courses_avg": 72.28
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fmst",
+			"courses_avg": 75.28
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fmst",
+			"courses_avg": 75.28
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fre",
+			"courses_avg": 79.9
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fre",
+			"courses_avg": 79.9
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "fren",
+			"courses_avg": 75.87
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "frst",
+			"courses_avg": 82.39
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "frst",
+			"courses_avg": 82.39
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "frst",
+			"courses_avg": 81.91
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "frst",
+			"courses_avg": 81.91
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "geob",
+			"courses_avg": 72.1
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "geob",
+			"courses_avg": 75.42
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "geog",
+			"courses_avg": 76.64
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "geog",
+			"courses_avg": 72.21
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "geog",
+			"courses_avg": 72.21
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "germ",
+			"courses_avg": 79.42
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "hist",
+			"courses_avg": 71.6
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "kin",
+			"courses_avg": 91.07
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "kin",
+			"courses_avg": 91.07
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "kin",
+			"courses_avg": 71.1
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "kin",
+			"courses_avg": 86.98
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "kin",
+			"courses_avg": 86.98
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "kin",
+			"courses_avg": 87.48
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "kin",
+			"courses_avg": 87.48
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "lfs",
+			"courses_avg": 76.46
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "lled",
+			"courses_avg": 73.82
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 75.56
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 71.85
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 77.49
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 62.29
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 70.26
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 69.6
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 72.48
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 70.73
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 66.04
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "math",
+			"courses_avg": 67.65
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "mech",
+			"courses_avg": 64.33
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "mech",
+			"courses_avg": 64.33
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "mech",
+			"courses_avg": 69.18
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "mech",
+			"courses_avg": 75.75
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "mech",
+			"courses_avg": 74.96
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "mech",
+			"courses_avg": 74.61
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "micb",
+			"courses_avg": 76.46
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "micb",
+			"courses_avg": 76.46
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "phys",
+			"courses_avg": 75.99
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "phys",
+			"courses_avg": 75.99
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "poli",
+			"courses_avg": 75.3
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "psyc",
+			"courses_avg": 69.07
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "psyc",
+			"courses_avg": 74.37
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "soci",
+			"courses_avg": 75.6
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "spph",
+			"courses_avg": 81.48
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "spph",
+			"courses_avg": 87.29
+		},
+		{
+			"courses_pass": 97,
+			"courses_dept": "visa",
+			"courses_avg": 67.32
+		}
+	]
+}
+

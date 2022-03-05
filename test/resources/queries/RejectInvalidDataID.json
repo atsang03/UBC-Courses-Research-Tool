@@ -1,0 +1,21 @@
+{
+	"title": "Data does not contain data id ",
+	"input": {
+		"WHERE": {
+			"GT":{
+
+				"courses_avg":97
+
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"test_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
