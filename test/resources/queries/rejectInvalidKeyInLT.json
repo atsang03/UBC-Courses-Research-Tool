@@ -1,0 +1,19 @@
+{
+  "title" : "invalid key in LT",
+  "input" : {
+    "WHERE": {
+      "LT": {
+        "courses_a": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected" : true,
+  "expected" : "InsightError"
+}

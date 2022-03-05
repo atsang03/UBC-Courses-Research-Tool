@@ -1,0 +1,20 @@
+{
+	"title": "Invalid value in MComparison",
+	"input" : {
+		"WHERE": {
+			"GT": {
+				"courses_avg": "t"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_id"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,28 @@
+{
+  "title" : "invalid key in IS",
+  "input" : {
+    "WHERE": {
+
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 90
+          }
+        },
+        {
+          "IS": {
+            "courses_pass": "adhe"
+          }
+        }
+      ]
+
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept"
+      ]
+    }
+  },
+  "errorExpected" : true,
+  "expected" : "InsightError"
+}

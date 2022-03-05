@@ -1,20 +1,20 @@
 {
-	"title": "Invalid value in MComparison",
-	"input" : {
+	"title": "Too many parts in input",
+	"input": {
 		"WHERE": {
 			"GT": {
-				"courses_avg": "99"
+				"courses_avg": 97
 			}
 		},
 		"OPTIONS": {
 			"COLUMNS": [
 				"courses_dept",
-				"courses_id",
 				"courses_avg"
 			],
-			"ORDER": "courses_id"
-		}
-	},
+			"ORDER": "courses_avg"
+		},
+		"USELESS" : "useless"
+},
 	"errorExpected": true,
 	"expected": "InsightError"
 }

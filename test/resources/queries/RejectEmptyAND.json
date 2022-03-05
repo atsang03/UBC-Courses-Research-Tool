@@ -1,8 +1,10 @@
 {
-	"title": "empty where",
+	"title": "Empty And",
 	"input": {
 		"WHERE": {
+			"AND": [
 
+			]
 		},
 		"OPTIONS": {
 			"COLUMNS": [
@@ -13,5 +15,5 @@
 		}
 	},
 	"errorExpected": true,
-	"expected": "ResultTooLargeError"
+	"expected": "InsightError"
 }

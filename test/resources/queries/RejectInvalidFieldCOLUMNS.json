@@ -1,0 +1,20 @@
+{
+	"title": "referencing more than one dataset",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"courses_avg": 99
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_useless",
+				"courses_avg"
+			],
+			"ORDER": "courses_id"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

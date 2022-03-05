@@ -1,7 +1,7 @@
 import {
 	InsightDatasetKind,
 	InsightError,
-	InsightResult,
+	InsightResult, NotFoundError,
 	ResultTooLargeError
 } from "../../src/controller/IInsightFacade";
 import InsightFacade from "../../src/controller/InsightFacade";
@@ -13,8 +13,8 @@ import {expect} from "chai";
 
 describe("InsightFacade", function () {
 	let insightFacade: InsightFacade;
-
 	const persistDir = "./data/data";
+
 	const datasetContents = new Map<string, string>();
 
 	// Reference any datasets you've added to test/resources/archives here and they will
@@ -106,12 +106,14 @@ describe("InsightFacade", function () {
 			{
 				assertOnResult: assertResult,
 				errorValidator: (error): error is PQErrorKind =>
-					error === "ResultTooLargeError" || error === "InsightError",
+					error === "ResultTooLargeError" || error === "InsightError" || error === "NotFoundError",
 				assertOnError(actual, expected) {
 					if (expected === "ResultTooLargeError") {
 						expect(actual).to.be.instanceof(ResultTooLargeError);
-					} else {
+					} else if (expected === "InsightError") {
 						expect(actual).to.be.instanceof(InsightError);
+					} else {
+						expect(actual).to.be.instanceof(NotFoundError);
 					}
 				},
 			}
