@@ -23,7 +23,7 @@ export default class InsightFacade implements IInsightFacade {
 					if (element.Section !== null) {
 						counter++;
 						this.secList.push(new Section(element.Subject, element.Course, element.Avg,
-							element.Professor, element.Tcitle, element.Pass, element.Fail, element.Audit,
+							element.Professor, element.Title, element.Pass, element.Fail, element.Audit,
 							element.id, element.Year, id));
 					}
 				}
