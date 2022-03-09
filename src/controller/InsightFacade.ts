@@ -32,7 +32,7 @@ export default class InsightFacade implements IInsightFacade {
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => idList.push(element.id));
-		fs.writeFileSync("data/data.json" ,JSON.stringify(this.secList));
+		fs.writeFileSync(`data/${id}` ,JSON.stringify(this.secList));
 		return Promise.resolve(idList);
 	}
 
@@ -63,7 +63,7 @@ export default class InsightFacade implements IInsightFacade {
 				element.remove();
 			}
 		});
-		fs.writeFileSync("data/data.json" ,JSON.stringify(this.secList));
+		fs.unlinkSync(`data/${id}`);
 		return Promise.resolve(id);
 	}
 }
