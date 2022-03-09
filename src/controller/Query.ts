@@ -11,15 +11,20 @@ export default  class Query {
 	public performQuery(): Promise<InsightResult[]> {
 		let JsonObj = JSON.parse(JSON.stringify(this.query));
 		let result: InsightResult[] = [];
-		let rawData = fs.readFileSync("data/data.json").toString();
-		const data = JSON.parse(rawData);
-		let listOfID: string[] = [];
+		// let rawData = fs.readFileSync("data/data.json").toString();
+		// const data = JSON.parse(rawData);
 		let wantedFields: string[] = [];
-		let queryValidator: QueryValidator = new QueryValidator(JsonObj,data,listOfID,wantedFields);
-		if (queryValidator.validation(JsonObj,data,listOfID,wantedFields)) {
+		let rawData: string;
+		let queryValidator: QueryValidator = new QueryValidator(JsonObj,wantedFields);
+		if (queryValidator.validation(JsonObj,wantedFields)) {
 			return Promise.reject(new InsightError());
 		}
 		let DataId: string = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
+		if (!(fs.existsSync(`data/${DataId}`))) {
+			return Promise.reject(new InsightError());
+		}
+		rawData = fs.readFileSync(`data/${DataId}`).toString();
+		const data = JSON.parse(rawData);
 		if (Object.keys(JsonObj["WHERE"]).length === 0) {
 			for (let i of data) {
 				if (i["dataID"] === DataId) {

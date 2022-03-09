@@ -1,0 +1,24 @@
+{
+	"title": "more than 1 FILTER in NOT",
+	"input": {
+		"WHERE": {
+			"NOT": {
+				"GT": {
+					"courses_avg": 10
+				},
+				"LT": {
+					"courses_avg": 95
+				}
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
