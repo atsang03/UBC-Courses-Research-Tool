@@ -1,0 +1,24 @@
+{
+	"title": "there is more than 1 BODY ",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 97
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		},
+		"bad": {
+			"GT": {
+				"courses_avg": 97
+			}
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

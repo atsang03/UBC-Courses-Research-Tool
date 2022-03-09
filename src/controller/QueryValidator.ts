@@ -1,25 +1,20 @@
+import {isArray} from "util";
+
 export default class QueryValidator {
 	private JsonObj: any;
-	private data: any;
-	private listOfID: string[];
 	private wantedFields: string[];
-	constructor(JsonObj: any,data: any,listOfID: string[],wantedFields: string[]) {
+	constructor(JsonObj: any,wantedFields: string[]) {
 		this.JsonObj = JsonObj;
-		this.data = data;
-		this.listOfID = listOfID;
 		this.wantedFields = wantedFields;
 	}
 
-	public validation(JsonObj: any,data: any,listOfID: string[],wantedFields: string[]): boolean {
+	public validation(JsonObj: any,wantedFields: string[]): boolean {
 		if (this.checkSizeWhereOptionsColumns(JsonObj)) {
 			return true;
 			// return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS or invalid # of keys in sections"));
 		}
 		let DataId: string = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
-		for (let i of data) {
-			listOfID.push(i["dataID"]);
-		}
-		if (!listOfID.includes(DataId) || this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
+		if (this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
 			return true;
 			// return Promise.reject(new InsightError("Referencing not yet added Dataset or error in OPTIONS"));
 		}
@@ -34,7 +29,7 @@ export default class QueryValidator {
 	}
 
 
-	private validateWhereSuite(obj: object, dataId: string): boolean {
+	private validateWhereSuite(obj: any, dataId: string): boolean {
 		let JsonObj = JSON.parse(JSON.stringify(obj));
 		if (JSON.stringify(JsonObj["WHERE"]) === "{}") {
 			return false;
@@ -47,7 +42,7 @@ export default class QueryValidator {
 		return false;
 	}
 
-	private checkFieldInWhere(obj: object,initial: boolean): boolean {
+	private checkFieldInWhere(obj: any,initial: boolean): boolean {
 		let result: boolean = initial;
 		let logic: string[] = ["AND","OR"];
 		let mcomparator: string[] = ["EQ","GT","LT"];
@@ -60,8 +55,12 @@ export default class QueryValidator {
 				} else if (i === "IS") {
 					result = this.handleIS(obj,result);
 				} else if (i === "NOT") {
-					for (let j of Object.values(obj)) {
-						result = this.checkFieldInWhere(j,result);
+					if (JSON.stringify(obj["NOT"]) === "{}" || Object.keys(obj["NOT"]).length > 1) {
+						result = false;
+					} else {
+						for (let j of Object.values(obj)) {
+							result = this.checkFieldInWhere(j, result);
+						}
 					}
 				} else {
 					result = false;
@@ -113,13 +112,17 @@ export default class QueryValidator {
 			return true;
 		}
 		return !Object.keys(JsonObj["OPTIONS"]).includes("COLUMNS") || !(Object.keys(JsonObj["OPTIONS"]).length <= 2)
-			|| (Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0 || !(Object.keys(JsonObj).length === 2));
+			|| Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0 || !(Object.keys(JsonObj).length === 2)
+			|| Object.values(JsonObj["WHERE"]).length > 1;
 	}
 
 	private handleLogic(obj: object,initial: boolean): boolean {
 		let result = initial;
+
 		for (let j of Object.values(obj)) {
-			if (j.length === 0) {
+			if (!Array.isArray(j)) {
+				result = false;
+			} else if (j.length === 0) {
 				result = false;
 			} else {
 				for (let k of j)  {

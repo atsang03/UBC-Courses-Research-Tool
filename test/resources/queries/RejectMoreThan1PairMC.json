@@ -1,0 +1,31 @@
+{
+	"title": "GT has more than one valid pair of mkey:number",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"courses_avg":97,
+						"courses_pass":95
+					}
+				},
+				{
+					"LT": {
+						"courses_avg":99,
+						"courses_pass":96
+					}
+				}
+
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_dept"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

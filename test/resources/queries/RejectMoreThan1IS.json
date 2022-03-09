@@ -1,0 +1,21 @@
+{
+	"title": "more than 1 skey:input pair ",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"courses_id": "558"
+			,"courses_uuid": "558"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_id",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
