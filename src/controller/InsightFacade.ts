@@ -98,11 +98,12 @@ export default class InsightFacade implements IInsightFacade {
 	public removeDataset(id: string): Promise<string> {
 		if (id.includes("_")) {
 			throw new InsightError("invalid id");
-		} else if (this.datasetList.every((element) => {
-			return !(element.id === id);
+		} else if (fs.readdirSync("data").every((element) => {
+			return !(element === id);
 		})) {
 			throw new NotFoundError("No dataset with this id found");
 		}
+		fs.unlinkSync(`data/${id}`);
 		this.datasetList.forEach((element) => {
 			if (element.id === id) {
 				element.remove();
@@ -113,7 +114,6 @@ export default class InsightFacade implements IInsightFacade {
 				element.remove();
 			}
 		});
-		fs.unlinkSync(`data/${id}`);
 		return Promise.resolve(id);
 	}
 
