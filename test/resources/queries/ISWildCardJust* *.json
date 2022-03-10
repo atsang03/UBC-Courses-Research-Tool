@@ -1,0 +1,28 @@
+{
+	"title": "Input of wildcard is * *",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"IS": {
+						"courses_dept": "* *"
+					}
+				},
+				{
+					"GT": {
+						"courses_avg": 97
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg",
+				"courses_id"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"expected": []
+}

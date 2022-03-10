@@ -1,5 +1,3 @@
-import {isArray} from "util";
-
 export default class QueryValidator {
 	private JsonObj: any;
 	private wantedFields: string[];
@@ -53,7 +51,7 @@ export default class QueryValidator {
 				} else if (mcomparator.includes(i)) {
 					result = this.handleMcomparison(obj,result);
 				} else if (i === "IS") {
-					result = this.handleIS(obj,result);
+					result = this.handleIS(obj,result) && this.checkWildCard(obj["IS"]);
 				} else if (i === "NOT") {
 					if (JSON.stringify(obj["NOT"]) === "{}" || Object.keys(obj["NOT"]).length > 1) {
 						result = false;
@@ -179,5 +177,18 @@ export default class QueryValidator {
 			}
 		}
 		return result;
+	}
+
+	private checkWildCard(obj: object): boolean {
+		if ((JSON.stringify(Object.values(obj)[0]).match(/[*]/g) || []).length > 2) {
+			return false;
+		} else if ((JSON.stringify(Object.values(obj)[0]).match(/[*]/g) || []).length === 2) {
+			let objLength = String(Object.values(obj)[0]).length;
+			return String(Object.values(obj)[0])[0] === "*" && String(Object.values(obj)[0])[objLength - 1] === "*";
+		} else if ((JSON.stringify(Object.values(obj)[0]).match(/[*]/g) || []).length === 1) {
+			let objLength = String(Object.values(obj)[0]).length;
+			return String(Object.values(obj)[0])[0] === "*" || String(Object.values(obj)[0])[objLength - 1] === "*";
+		}
+		return true;
 	}
 }

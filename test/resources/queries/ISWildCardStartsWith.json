@@ -1,0 +1,90 @@
+{
+	"title": "starts with wildcard",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"courses_id": "65*"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg",
+				"courses_id"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"expected": [
+		{
+			"courses_dept": "comm",
+			"courses_avg": 78.75,
+			"courses_id": "657"
+		},
+		{
+			"courses_dept": "comm",
+			"courses_avg": 78.75,
+			"courses_id": "657"
+		},
+		{
+			"courses_dept": "comm",
+			"courses_avg": 78.75,
+			"courses_id": "657"
+		},
+		{
+			"courses_dept": "comm",
+			"courses_avg": 78.75,
+			"courses_id": "657"
+		},
+		{
+			"courses_dept": "comm",
+			"courses_avg": 79,
+			"courses_id": "657"
+		},
+		{
+			"courses_dept": "comm",
+			"courses_avg": 79,
+			"courses_id": "657"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 83.25,
+			"courses_id": "654"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 83.25,
+			"courses_id": "654"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 83.91,
+			"courses_id": "654"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 83.91,
+			"courses_id": "654"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 86.5,
+			"courses_id": "654"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 86.5,
+			"courses_id": "654"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 86.75,
+			"courses_id": "654"
+		},
+		{
+			"courses_dept": "sowk",
+			"courses_avg": 86.75,
+			"courses_id": "654"
+		}
+	]
+}

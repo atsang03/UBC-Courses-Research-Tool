@@ -1,0 +1,20 @@
+{
+	"title": "There 2 asterisk at front",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"courses_id": "**97"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg",
+				"courses_id"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
