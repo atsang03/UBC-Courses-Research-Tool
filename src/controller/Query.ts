@@ -81,6 +81,25 @@ export default  class Query {
 
 	private scomparisonHandler(obj: any, query: any): boolean {
 		const skeyField = Object.keys(query)[0].split("_")[1];
+		if ((JSON.stringify(Object.values(query)[0]).match(/[*]/g) || []).length === 1) {
+			if (Object.values(query)[0] === "*") {
+				return true;
+			} else if (String(Object.values(query)[0])[0] === "*") {
+				let endLength: number = String(Object.values(query)[0]).split("*")[1].length;
+				let endOfObj = String(obj[skeyField]).substring(String(obj[skeyField]).length - endLength);
+				return endOfObj === String(Object.values(query)[0]).split("*")[1];
+			} else {
+				let beginLength: number = String(Object.values(query)[0]).split("*")[0].length;
+				let beginOfObj = String(obj[skeyField]).substring(0,beginLength);
+				return beginOfObj === String(Object.values(query)[0]).split("*")[0];
+			}
+		} else if ((JSON.stringify(Object.values(query)[0]).match(/[*]/g) || []).length === 2) {
+			if (Object.values(query)[0] === "**") {
+				return true;
+			} else {
+				return String(obj[skeyField]).includes(String(Object.values(query)[0]).split("*")[1]);
+			}
+		}
 		const desiredIs: string = String(Object.values(query)[0]);
 		return obj[skeyField] === desiredIs;
 	}
