@@ -7,12 +7,12 @@ As a Student, I want to query for courses with a certain instructor, so that I c
 
 #### Definitions of Done(s)
 . Scenario 1 : Valid Query.
-Given: There is already an added courses dataset called courses. 
+Given: User is on the webpage. 
 When: the user inputs a valid query for courses taught by a certain instructor 
 Then: a list of courses names taught by the instructor will appear. 
 
 Scenario. 2: Invalid Query. 
-Given: There is already an added courses dataset called courses. 
+Given: User is on the webpage
 When: user inputs an invalid query. 
 Then: an error message popping up will appear.
 
@@ -22,12 +22,12 @@ As a student, I want to see courses in a certain department sorted by the course
 
 #### Definitions of Done(s)
  Scenario 1: Valid department input
-Given: A valid dataset has been added. 
+Given: User is on the webpage
 When: The user enters a department name
 Then: A list of courses in the department, sorted by average is given.
 
 Scenario 2: Invalid department input
-Given: A valid dataset has been added. 
+Given: User is on the webpage 
 When: The user enters an invalid/nonexistent department name
 Then: A message saying “No courses found” will appear.
 
