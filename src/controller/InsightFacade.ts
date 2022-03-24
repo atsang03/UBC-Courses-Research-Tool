@@ -1,16 +1,34 @@
 import JSZip, {loadAsync} from "jszip";
-import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError,
-	InsightResult, NotFoundError, ResultTooLargeError} from "./IInsightFacade";
+import {
+	IInsightFacade,
+	InsightDataset,
+	InsightDatasetKind,
+	InsightError,
+	InsightResult,
+	NotFoundError
+} from "./IInsightFacade";
 import Section from "./Section";
 import * as fs from "fs";
 import Query from "./Query";
+import {parse} from "parse5";
+
 export default class InsightFacade implements IInsightFacade {
 	private datasetList: any[] = [];
 	private secList: any[] = [];
+	// Function to add dataset
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		if (id.includes("_")) {
 			throw new InsightError("invalid id");
 		}
+		if (kind === InsightDatasetKind.Courses) {
+			return await this.addCourse(id, content, kind);
+		} else if (kind === InsightDatasetKind.Rooms) {
+			return await this.addRooms(id, content, kind);
+		}
+		return [];
+	}
+
+	private async addCourse(id: string, content: string, kind: InsightDatasetKind): Promise<string[]>{
 		let idList: string[] = [];
 		let promises: Array<Promise<any>> = [];
 		let zip = new JSZip();
@@ -19,7 +37,7 @@ export default class InsightFacade implements IInsightFacade {
 		aPromise.folder("courses")?.forEach((async (relativePath, file) => {
 			promises.push(file.async("string").then((filecontent) => {
 				let jFile: any = JSON.parse(filecontent);
-				for (const element of  jFile.result) {
+				for (const element of jFile.result) {
 					if (element.Section !== null) {
 						counter++;
 						this.secList.push(new Section(element.Subject, element.Course, element.Avg,
@@ -32,10 +50,26 @@ export default class InsightFacade implements IInsightFacade {
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => idList.push(element.id));
-		fs.writeFileSync(`data/${id}` ,JSON.stringify(this.secList));
+		fs.writeFileSync(`data/${id}`, JSON.stringify(this.secList));
 		return Promise.resolve(idList);
 	}
 
+	public async addRooms(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		let idList: string[] = [];
+		let promises: Array<Promise<any> | undefined > = [];
+		let zip = new JSZip();
+		let counter: number = 0;
+		const aPromise = await zip.loadAsync(content, {base64: true});
+		promises.push(aPromise.file("rooms/index.htm")?.async("string").then((filecontent) => {
+			let jFile: any = parse(filecontent);
+			console.log(jFile);
+		}));
+		await Promise.all(promises);
+		console.log("did we get out here?");
+		return [];
+	}
+
+	// Function to list datasets in this instance of insightFacade
 	public listDatasets(): Promise<InsightDataset[]> {
 		return Promise.resolve(this.datasetList);
 	}
@@ -45,12 +79,11 @@ export default class InsightFacade implements IInsightFacade {
 		return input.performQuery();
 	}
 
+	// Function to remove dataset
 	public removeDataset(id: string): Promise<string> {
 		if (id.includes("_")) {
 			throw new InsightError("invalid id");
-		} else if (fs.readdirSync("data").every((element) => {
-			return !(element === id);
-		})) {
+		} else if (!fs.existsSync(`data/${id}`)) {
 			throw new NotFoundError("No dataset with this id found");
 		}
 		fs.unlinkSync(`data/${id}`);
