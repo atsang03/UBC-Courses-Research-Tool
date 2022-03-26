@@ -1,0 +1,29 @@
+{
+	"title": "TRANSFORMATIONS missing WHERE",
+	"input": {
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg",
+				"overallAvg",
+				"courses_title"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"courses_avg",
+				"courses_title"
+			],
+			"APPLY": [
+				{
+					"overallAvg": {
+						"MIN": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
