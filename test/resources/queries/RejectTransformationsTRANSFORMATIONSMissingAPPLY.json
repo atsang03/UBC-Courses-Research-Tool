@@ -1,0 +1,25 @@
+{
+	"title": "missing APPLY",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 95
+			}
+		},
+		"OPTIONS": {
+			"USELESS": "USELESS",
+			"COLUMNS": [
+				"courses_dept",
+				"MaximumAvg"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"courses_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

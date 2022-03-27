@@ -1,0 +1,43 @@
+{
+	"title": "invalid value type NOT",
+	"input": {
+		"WHERE": {
+			"NOT": 1
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg",
+				"MaximumAvg",
+				"MinimumAvg"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys":[
+					"courses_dept",
+					"courses_avg"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "courses_avg"
+					}
+				},
+				{
+					"MinimumAvg": {
+						"MIN": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,35 @@
+{
+	"title": "Apply key contains underscore",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"MinimumAvg"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg_": {
+						"MAX": "courses_avg"
+					}
+				},
+				{
+					"MinimumAvg": {
+						"MIN": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

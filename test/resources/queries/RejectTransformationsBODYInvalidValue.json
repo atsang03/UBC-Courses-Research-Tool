@@ -1,0 +1,6 @@
+{
+	"title": "Invalid BODY value type",
+	"input": 1,
+	"errorExpected": true,
+	"expected": "InsightError"
+}
