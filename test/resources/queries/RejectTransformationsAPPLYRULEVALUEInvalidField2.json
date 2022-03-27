@@ -1,0 +1,36 @@
+{
+	"title": "Invalid rooms field in APPLYRULEVALUE",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"rooms_seats": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname",
+				"MaximumAvg",
+				"MinimumAvg"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "rooms_seats"
+					}
+				},
+				{
+					"MinimumAvg": {
+						"MIN": "rooms_dept"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
