@@ -10,7 +10,7 @@ import {
 import Section from "./Section";
 import * as fs from "fs";
 import Query from "./Query";
-import {parse} from "parse5";
+import {ChildNode, Document, Element, Node, ParentNode, parse} from "parse5";
 
 export default class InsightFacade implements IInsightFacade {
 	private datasetList: any[] = [];
@@ -58,18 +58,58 @@ export default class InsightFacade implements IInsightFacade {
 		let idList: string[] = [];
 		let promises: Array<Promise<any> | undefined > = [];
 		let zip = new JSZip();
+		let tbody: any;
 		let counter: number = 0;
 		const aPromise = await zip.loadAsync(content, {base64: true});
 		promises.push(aPromise.file("rooms/index.htm")?.async("string").then((filecontent) => {
 			let jFile: any = parse(filecontent);
-			console.log(jFile);
+			// Get tbody node, aka the table
+			tbody = this.roomsDFS(jFile);
 		}));
 		await Promise.all(promises);
-		console.log("did we get out here?");
+		this.bodyDFS(tbody);
 		return [];
 	}
 
-	// Function to list datasets in this instance of insightFacade
+	private bodyDFS(tbody: any) {
+		return [];
+	}
+
+	private roomsDFS(jFile: any) {
+		let result: any;
+		jFile.childNodes.forEach((node: any) => {
+			if (node.nodeName === "html") {
+				result = this.DFShelper(node);
+			}
+		});
+		if (result !== null) {
+			return result;
+		} else {
+			throw new InsightError("invalid dataset");
+		}
+	}
+
+	private DFShelper(html: any) {
+		let result: any;
+		if (html.nodeName === "tbody") {
+			return html;
+		}
+		if (html.childNodes === undefined) {
+			return null;
+		}
+		if (html.childNodes === null) {
+			return null;
+		}
+		for (const child of html.childNodes) {
+			result = this.DFShelper(child);
+			if (result !== null && result !== undefined) {
+				return result;
+			}
+		}
+	}
+
+
+		// Function to list datasets in this instance of insightFacade
 	public listDatasets(): Promise<InsightDataset[]> {
 		return Promise.resolve(this.datasetList);
 	}
@@ -99,4 +139,6 @@ export default class InsightFacade implements IInsightFacade {
 		});
 		return Promise.resolve(id);
 	}
+
+
 }
