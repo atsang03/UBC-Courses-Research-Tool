@@ -1,183 +1,131 @@
-import {isArray} from "util";
+import WhereValidator from "./WhereValidator";
 
 export default class QueryValidator {
-	private JsonObj: any;
-	private wantedFields: string[];
-	constructor(JsonObj: any,wantedFields: string[]) {
-		this.JsonObj = JsonObj;
-		this.wantedFields = wantedFields;
-	}
+	private roomsFields: string[] =
+		["fullname", "shortname", "number", "name", "address", "lat", "lon", "seats", "type", "furniture", "href"];
 
-	public validation(JsonObj: any,wantedFields: string[]): boolean {
-		if (this.checkSizeWhereOptionsColumns(JsonObj)) {
+	private coursesMfields: string[] = ["avg", "pass", "fail", "audit", "year"];
+	private coursesSfields: string[] = ["dept", "id", "instructor", "title", "uuid"];
+	private dataId: string = "";
+	private columnKeys: string[] = [];
+	private coursesUsage: boolean = false;
+
+	public validation(jsonObj: any, wantedFields: string[]): boolean {
+		if (this.checkBody(jsonObj)) {
 			return true;
-			// return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS or invalid # of keys in sections"));
 		}
-		let DataId: string = JSON.parse(JSON.stringify(JsonObj["OPTIONS"]["COLUMNS"]))[0].split("_")[0];
-		if (this.checkColumnsAndOrderDataSetReferences(JsonObj,DataId)) {
-			return true;
-			// return Promise.reject(new InsightError("Referencing not yet added Dataset or error in OPTIONS"));
-		}
-		for (let i of JsonObj["OPTIONS"]["COLUMNS"]) {
+		for (let i of jsonObj["OPTIONS"]["COLUMNS"]) {
 			wantedFields.push(i.split("_")[1]);
 		}
-		if (this.validateWhereSuite(JsonObj,DataId)) {
+		return false;
+	}
+
+	private checkBody(jsonObj: any): boolean {
+		if (typeof jsonObj !== "object") {
 			return true;
-			// return Promise.reject(new InsightError("error in WHERE"));
+		}
+		let keys = Object.keys(jsonObj);
+		if (keys.length !== 2) {
+			return true;
+		}
+		if (!keys.includes("WHERE") || !keys.includes("OPTIONS")) {
+			return true;
+		}
+		if (this.checkOptions(jsonObj["OPTIONS"])) {
+			return true;
+		}
+		let whereValidator: WhereValidator = new WhereValidator(this.dataId,this.coursesUsage);
+		return whereValidator.checkWhere(jsonObj["WHERE"]);
+	}
+
+	private checkOptions(jsonObj: any): boolean {
+		if (typeof jsonObj !== "object") {
+			return true;
+		}
+		let keys: string[] = Object.keys(jsonObj);
+		if (keys.length > 2 || keys.length === 0) {
+			return true;
+		}
+		if (keys.length === 1) {
+			if (!keys.includes("COLUMNS")) {
+				return true;
+			}
+			return this.checkColumns(jsonObj["COLUMNS"]);
+		} else if (keys.length === 2) {
+			if (!keys.includes("COLUMNS") || !keys.includes("ORDER")) {
+				return true;
+			}
+			return this.checkColumns(jsonObj["COLUMNS"]) || this.checkOrder(jsonObj["ORDER"]);
+		}
+		return true;
+	}
+
+	private checkColumns(jsonObj: any): boolean {
+		if (!Array.isArray(jsonObj)) {
+			return true;
+		} else if (jsonObj.length === 0) {
+			return true;
+		}
+		this.dataId = String(jsonObj[0]).split("_")[0];
+		let firstField: string = String(jsonObj[0]).split("_")[1];
+		this.coursesUsage = this.coursesSfields.includes(firstField) || this.coursesMfields.includes(firstField);
+		for (let obj of jsonObj) {
+			let id: string = String(obj).split("_")[0];
+			let field: string = String(obj).split("_")[1];
+			if (this.coursesUsage) {
+				if (id !== this.dataId) {
+					return true;
+				} else if (!this.coursesSfields.includes(field) && !this.coursesMfields.includes(field)) {
+					return true;
+				}
+			} else {
+				if (id !== this.dataId) {
+					return true;
+				} else if (!this.roomsFields.includes(field)) {
+					return true;
+				}
+			}
+			this.columnKeys.push(obj);
 		}
 		return false;
 	}
 
-
-	private validateWhereSuite(obj: any, dataId: string): boolean {
-		let JsonObj = JSON.parse(JSON.stringify(obj));
-		if (JSON.stringify(JsonObj["WHERE"]) === "{}") {
-			return false;
-		} else if (!this.referenceOnlyOneDataSet(JsonObj["WHERE"],dataId,true)) {
+	private checkOrder(jsonObj: any): boolean {
+		if (typeof jsonObj === "string") {
+			return !this.columnKeys.includes(String(jsonObj));
+		} else if (typeof jsonObj === "object") {
+			let keys = Object.keys(jsonObj);
+			if (keys.length !== 2) {
+				return true;
+			} else if (!keys.includes("keys") || !keys.includes("dir")) {
+				return true;
+			}
+			return this.checkDir(jsonObj["dir"]) || this.checkKeys(jsonObj["keys"]);
+		} else {
 			return true;
-		} else if(!this.checkFieldInWhere(JsonObj["WHERE"],true)) {
+		}
+	}
 
+	private checkDir(jsonObj: any): boolean {
+		if (typeof jsonObj !== "string") {
+			return true;
+		} else if (String(jsonObj) !== "DOWN" || String(jsonObj) !== "UP") {
 			return true;
 		}
 		return false;
 	}
 
-	private checkFieldInWhere(obj: any,initial: boolean): boolean {
-		let result: boolean = initial;
-		let logic: string[] = ["AND","OR"];
-		let mcomparator: string[] = ["EQ","GT","LT"];
-		if (result) {
-			for (let i of Object.keys(obj)) {
-				if (logic.includes(i)) {
-					result = this.handleLogic(obj,result);
-				} else if (mcomparator.includes(i)) {
-					result = this.handleMcomparison(obj,result);
-				} else if (i === "IS") {
-					result = this.handleIS(obj,result);
-				} else if (i === "NOT") {
-					if (JSON.stringify(obj["NOT"]) === "{}" || Object.keys(obj["NOT"]).length > 1) {
-						result = false;
-					} else {
-						for (let j of Object.values(obj)) {
-							result = this.checkFieldInWhere(j, result);
-						}
-					}
-				} else {
-					result = false;
-				}
-			}
+	private checkKeys(jsonObj: any): boolean {
+		if (!Array.isArray(jsonObj)) {
+			return true;
+		} else if (jsonObj.length === 0) {
+			return true;
 		}
-		return result;
-	}
-
-	private referenceOnlyOneDataSet(obj: object, dataId: string,initial: boolean): boolean {
-		let result: boolean = initial;
-		if (obj === null) {
-			return result;
-		} else if (result) {
-			for (let i of Object.keys(obj)) {
-				if ((i.includes("_"))) {
-					result = i.split("_")[0] === dataId;
-				} else {
-					for (let j of Object.values(obj)) {
-						result = this.referenceOnlyOneDataSet(j, dataId,result);
-					}
-				}
-			}
-		}
-		return result;
-	}
-
-	private checkColumnsAndOrderDataSetReferences(obj: any, dataId: string): boolean {
-		let mfield: string[] = ["avg","pass","fail","audit","year"];
-		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
-		for (let value of Object.values(obj["OPTIONS"]["COLUMNS"])) {
-			let ParsedValue: string = JSON.parse(JSON.stringify(value));
-			if (dataId !== ParsedValue.split("_")[0] ||
-				!(mfield.includes(ParsedValue.split("_")[1]) ||
-					sfield.includes(ParsedValue.split("_")[1]))) {
+		for (let obj of jsonObj) {
+			if (!this.columnKeys.includes(obj)) {
 				return true;
 			}
 		}
-		if (Object.keys(obj["OPTIONS"]).includes("ORDER")) {
-			let value: string = obj["OPTIONS"]["ORDER"];
-			return (dataId !== value.split("_")[0] ||
-				!Object.values(obj["OPTIONS"]["COLUMNS"]).includes(value));
-		}
 		return false;
-	}
-
-	private checkSizeWhereOptionsColumns(JsonObj: any): boolean {
-		if (!(Object.keys(JsonObj).includes("OPTIONS")) || !(Object.keys(JsonObj).includes("WHERE"))) {
-			return true;
-		}
-		return !Object.keys(JsonObj["OPTIONS"]).includes("COLUMNS") || !(Object.keys(JsonObj["OPTIONS"]).length <= 2)
-			|| Object.values(JsonObj["OPTIONS"]["COLUMNS"]).length === 0 || !(Object.keys(JsonObj).length === 2)
-			|| Object.values(JsonObj["WHERE"]).length > 1;
-	}
-
-	private handleLogic(obj: object,initial: boolean): boolean {
-		let result = initial;
-
-		for (let j of Object.values(obj)) {
-			if (!Array.isArray(j)) {
-				result = false;
-			} else if (j.length === 0) {
-				result = false;
-			} else {
-				for (let k of j)  {
-					result = this.checkFieldInWhere(k,result);
-				}
-			}
-		}
-		return result;
-	}
-
-	private handleMcomparison(obj: object, initial: boolean): boolean {
-		let mfield: string[] = ["avg","pass","fail","audit","year"];
-		let result = initial;
-		for (let j of Object.values(obj)) {
-			if (JSON.stringify(j) === "{}") {
-				result = false;
-			} else if (mfield.includes(Object.keys(j)[0].split("_")[1])) {
-				let key: string = Object.keys(j)[0].split("_")[1];
-				for (let k of Object.keys(j)) {
-					if (k.split("_")[1] !== key) {
-						result = false;
-						break;
-					}
-				}
-				if (result) {
-					result = (typeof Object.values(j)[Object.keys(j).length - 1] === "number");
-				}
-			} else {
-				result = false;
-			}
-		}
-		return result;
-	}
-
-	private handleIS(obj: object, initial: boolean): boolean {
-		let sfield: string[] = ["dept","id","instructor","title", "uuid"];
-		let result = initial;
-		for (let j of Object.values(obj)) {
-			if (JSON.stringify(j) === "{}") {
-				result = false;
-			} else if (sfield.includes(Object.keys(j)[0].split("_")[1])) {
-				let key: string = Object.keys(j)[0].split("_")[1];
-				for (let k of Object.keys(j)) {
-					if (k.split("_")[1] !== key) {
-						result = false;
-						break;
-					}
-				}
-				if (result) {
-					result = (typeof Object.values(j)[0] === "string");
-				}
-			} else {
-				result = false;
-			}
-		}
-		return result;
 	}
 }

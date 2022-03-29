@@ -1,0 +1,31 @@
+{
+	"title": "referencing multiple datasets",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_fail": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"MaximumAvg"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"rooms_avg"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,28 @@
+{
+	"title": "Invalid value in GROUP",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_fail": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"MaximumAvg"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": 1,
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

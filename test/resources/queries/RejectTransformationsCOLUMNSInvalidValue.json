@@ -1,0 +1,33 @@
+{
+	"title": "Invalid COLUMNS value type",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": 1,
+			"ORDER": "courses_dept"
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "courses_avg"
+					}
+				},
+				{
+					"MinimumAvg": {
+						"MIN": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

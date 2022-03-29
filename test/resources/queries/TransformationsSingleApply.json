@@ -1,0 +1,174 @@
+{
+	"title": "Transformation but no ORDER",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"MaximumAvg"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"courses_dept": "adhe",
+			"MaximumAvg": 96.11
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumAvg": 96
+		},
+		{
+			"courses_dept": "arst",
+			"MaximumAvg": 96.94
+		},
+		{
+			"courses_dept": "audi",
+			"MaximumAvg": 96.9
+		},
+		{
+			"courses_dept": "bmeg",
+			"MaximumAvg": 95.15
+		},
+		{
+			"courses_dept": "chbe",
+			"MaximumAvg": 95.54
+		},
+		{
+			"courses_dept": "civl",
+			"MaximumAvg": 96.27
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumAvg": 99.19
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumAvg": 98
+		},
+		{
+			"courses_dept": "edcp",
+			"MaximumAvg": 95.58
+		},
+		{
+			"courses_dept": "edst",
+			"MaximumAvg": 96.46
+		},
+		{
+			"courses_dept": "educ",
+			"MaximumAvg": 97.5
+		},
+		{
+			"courses_dept": "eece",
+			"MaximumAvg": 98.75
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumAvg": 98.8
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumAvg": 96.47
+		},
+		{
+			"courses_dept": "fipr",
+			"MaximumAvg": 96.4
+		},
+		{
+			"courses_dept": "frst",
+			"MaximumAvg": 96.36
+		},
+		{
+			"courses_dept": "hgse",
+			"MaximumAvg": 95.29
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumAvg": 96.06
+		},
+		{
+			"courses_dept": "libr",
+			"MaximumAvg": 96.1
+		},
+		{
+			"courses_dept": "math",
+			"MaximumAvg": 99.78
+		},
+		{
+			"courses_dept": "midw",
+			"MaximumAvg": 96.5
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumAvg": 96.59
+		},
+		{
+			"courses_dept": "mtrl",
+			"MaximumAvg": 96.25
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumAvg": 96.5
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumAvg": 98.71
+		},
+		{
+			"courses_dept": "pcth",
+			"MaximumAvg": 96
+		},
+		{
+			"courses_dept": "phar",
+			"MaximumAvg": 95.07
+		},
+		{
+			"courses_dept": "phil",
+			"MaximumAvg": 96
+		},
+		{
+			"courses_dept": "phth",
+			"MaximumAvg": 95.37
+		},
+		{
+			"courses_dept": "phys",
+			"MaximumAvg": 95.43
+		},
+		{
+			"courses_dept": "plan",
+			"MaximumAvg": 96.47
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumAvg": 97
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumAvg": 96.15
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumAvg": 98.98
+		},
+		{
+			"courses_dept": "thtr",
+			"MaximumAvg": 95.2
+		}
+	]
+}

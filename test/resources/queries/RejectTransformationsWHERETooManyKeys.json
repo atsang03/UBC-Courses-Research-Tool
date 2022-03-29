@@ -1,0 +1,43 @@
+{
+	"title": "too many filters in WHERE",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 95
+			},
+			"USELESS":"USELESS"
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"MaximumAvg",
+				"MinimumAvg"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys":[
+					"courses_useless"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "courses_avg"
+					}
+				},
+				{
+					"MinimumAvg": {
+						"MIN": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

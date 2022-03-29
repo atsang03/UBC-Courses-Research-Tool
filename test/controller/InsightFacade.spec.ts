@@ -78,7 +78,7 @@ describe("InsightFacade", function () {
 
 		it("Should remove a valid dataset", function () {
 			const id: string = "courses";
-			console.log(insightFacade.listDatasets());
+			// console.log(insightFacade.listDatasets());
 			return insightFacade.removeDataset(id).then((result: string) => {
 				expect(fs.readdirSync("data")).to.deep.equal([]);
 			});
