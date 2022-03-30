@@ -1,0 +1,110 @@
+.index-container {
+	width: 100%;
+	display: flex;
+	overflow: auto;
+	min-height: 100vh;
+	align-items: center;
+	flex-direction: column;
+	background-color: #e6e6e6;
+}
+.index-header-container {
+	flex: 0 0 auto;
+	width: 100%;
+	height: 100px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #e6e6e6;
+}
+.index-text {
+	color: #000000;
+	align-self: center;
+}
+.index-sub-header-container {
+	width: 100%;
+	height: 45px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #092042;
+}
+.index-text1 {
+	color: #FFFFFF;
+	align-self: center;
+}
+.index-search-form-container {
+	flex: 0 0 auto;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.index-search-content-container {
+	width: 80%;
+	height: 168px;
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: center;
+}
+.index-container1 {
+	width: 100%;
+	border: 2px dashed rgba(120, 120, 120, 0.4);
+	height: 57px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.index-search-button-container {
+	width: 75%;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+.index-container2 {
+	width: 155px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.index-button {
+	color: #FFFFFF;
+	font-style: normal;
+	font-weight: 700;
+	background-color: #092042;
+}
+.index-container3 {
+	width: 155px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.index-result-container {
+	width: 100%;
+	border: 2px dashed rgba(120, 120, 120, 0.4);
+	height: 580px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #e6e6e6;
+}
+.index-footer-container {
+	width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #e6e6e6;
+}
