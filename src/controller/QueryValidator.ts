@@ -14,6 +14,7 @@ export default class QueryValidator {
 		if (this.checkBody(jsonObj)) {
 			return true;
 		}
+
 		for (let i of jsonObj["OPTIONS"]["COLUMNS"]) {
 			wantedFields.push(i.split("_")[1]);
 		}
@@ -34,6 +35,7 @@ export default class QueryValidator {
 		if (this.checkOptions(jsonObj["OPTIONS"])) {
 			return true;
 		}
+
 		let whereValidator: WhereValidator = new WhereValidator(this.dataId,this.coursesUsage);
 		return whereValidator.checkWhere(jsonObj["WHERE"]);
 	}
@@ -109,7 +111,7 @@ export default class QueryValidator {
 	private checkDir(jsonObj: any): boolean {
 		if (typeof jsonObj !== "string") {
 			return true;
-		} else if (String(jsonObj) !== "DOWN" || String(jsonObj) !== "UP") {
+		} else if (String(jsonObj) !== "DOWN" && String(jsonObj) !== "UP") {
 			return true;
 		}
 		return false;

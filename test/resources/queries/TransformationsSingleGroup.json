@@ -1,0 +1,788 @@
+{
+	"title": "single group by",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"MaximumAvg"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"courses_dept"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept"
+			],
+			"APPLY": [
+				{
+					"MaximumAvg": {
+						"MAX": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"courses_dept": "zool",
+			"MaximumAvg": 92.71
+		},
+		{
+			"courses_dept": "wrds",
+			"MaximumAvg": 79.12
+		},
+		{
+			"courses_dept": "wood",
+			"MaximumAvg": 89
+		},
+		{
+			"courses_dept": "visa",
+			"MaximumAvg": 89
+		},
+		{
+			"courses_dept": "vant",
+			"MaximumAvg": 76.03
+		},
+		{
+			"courses_dept": "ursy",
+			"MaximumAvg": 82.83
+		},
+		{
+			"courses_dept": "urst",
+			"MaximumAvg": 82.16
+		},
+		{
+			"courses_dept": "ufor",
+			"MaximumAvg": 84.08
+		},
+		{
+			"courses_dept": "udes",
+			"MaximumAvg": 89.5
+		},
+		{
+			"courses_dept": "thtr",
+			"MaximumAvg": 95.2
+		},
+		{
+			"courses_dept": "test",
+			"MaximumAvg": 60
+		},
+		{
+			"courses_dept": "swed",
+			"MaximumAvg": 84.92
+		},
+		{
+			"courses_dept": "surg",
+			"MaximumAvg": 94.25
+		},
+		{
+			"courses_dept": "sts",
+			"MaximumAvg": 90
+		},
+		{
+			"courses_dept": "stat",
+			"MaximumAvg": 94.7
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumAvg": 98.98
+		},
+		{
+			"courses_dept": "spha",
+			"MaximumAvg": 89.76
+		},
+		{
+			"courses_dept": "span",
+			"MaximumAvg": 93.25
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumAvg": 96.15
+		},
+		{
+			"courses_dept": "soil",
+			"MaximumAvg": 91.43
+		},
+		{
+			"courses_dept": "soci",
+			"MaximumAvg": 88.71
+		},
+		{
+			"courses_dept": "scie",
+			"MaximumAvg": 86.81
+		},
+		{
+			"courses_dept": "scan",
+			"MaximumAvg": 86.35
+		},
+		{
+			"courses_dept": "sans",
+			"MaximumAvg": 92.5
+		},
+		{
+			"courses_dept": "russ",
+			"MaximumAvg": 92.3
+		},
+		{
+			"courses_dept": "rsot",
+			"MaximumAvg": 91.7
+		},
+		{
+			"courses_dept": "rmst",
+			"MaximumAvg": 79
+		},
+		{
+			"courses_dept": "rmes",
+			"MaximumAvg": 89.25
+		},
+		{
+			"courses_dept": "rhsc",
+			"MaximumAvg": 95
+		},
+		{
+			"courses_dept": "rgla",
+			"MaximumAvg": 80.58
+		},
+		{
+			"courses_dept": "relg",
+			"MaximumAvg": 84.6
+		},
+		{
+			"courses_dept": "punj",
+			"MaximumAvg": 89.08
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumAvg": 97
+		},
+		{
+			"courses_dept": "port",
+			"MaximumAvg": 90
+		},
+		{
+			"courses_dept": "pols",
+			"MaximumAvg": 88.3
+		},
+		{
+			"courses_dept": "poli",
+			"MaximumAvg": 86
+		},
+		{
+			"courses_dept": "plan",
+			"MaximumAvg": 96.47
+		},
+		{
+			"courses_dept": "phys",
+			"MaximumAvg": 95.43
+		},
+		{
+			"courses_dept": "phth",
+			"MaximumAvg": 95.37
+		},
+		{
+			"courses_dept": "phrm",
+			"MaximumAvg": 94.23
+		},
+		{
+			"courses_dept": "phil",
+			"MaximumAvg": 96
+		},
+		{
+			"courses_dept": "phar",
+			"MaximumAvg": 95.07
+		},
+		{
+			"courses_dept": "pers",
+			"MaximumAvg": 89.25
+		},
+		{
+			"courses_dept": "pcth",
+			"MaximumAvg": 96
+		},
+		{
+			"courses_dept": "path",
+			"MaximumAvg": 93.5
+		},
+		{
+			"courses_dept": "onco",
+			"MaximumAvg": 93.07
+		},
+		{
+			"courses_dept": "obst",
+			"MaximumAvg": 95
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumAvg": 98.71
+		},
+		{
+			"courses_dept": "nrsc",
+			"MaximumAvg": 90.67
+		},
+		{
+			"courses_dept": "nest",
+			"MaximumAvg": 87.5
+		},
+		{
+			"courses_dept": "name",
+			"MaximumAvg": 91.57
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumAvg": 96.5
+		},
+		{
+			"courses_dept": "mtrl",
+			"MaximumAvg": 96.25
+		},
+		{
+			"courses_dept": "mrne",
+			"MaximumAvg": 89.4
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumAvg": 96.59
+		},
+		{
+			"courses_dept": "midw",
+			"MaximumAvg": 96.5
+		},
+		{
+			"courses_dept": "micb",
+			"MaximumAvg": 94.17
+		},
+		{
+			"courses_dept": "medi",
+			"MaximumAvg": 93.5
+		},
+		{
+			"courses_dept": "medg",
+			"MaximumAvg": 94.7
+		},
+		{
+			"courses_dept": "mech",
+			"MaximumAvg": 93.5
+		},
+		{
+			"courses_dept": "mdvl",
+			"MaximumAvg": 77.39
+		},
+		{
+			"courses_dept": "math",
+			"MaximumAvg": 99.78
+		},
+		{
+			"courses_dept": "lled",
+			"MaximumAvg": 93.2
+		},
+		{
+			"courses_dept": "ling",
+			"MaximumAvg": 92.25
+		},
+		{
+			"courses_dept": "libr",
+			"MaximumAvg": 96.1
+		},
+		{
+			"courses_dept": "libe",
+			"MaximumAvg": 92.26
+		},
+		{
+			"courses_dept": "lfs",
+			"MaximumAvg": 90.83
+		},
+		{
+			"courses_dept": "law",
+			"MaximumAvg": 86.6
+		},
+		{
+			"courses_dept": "latn",
+			"MaximumAvg": 84.29
+		},
+		{
+			"courses_dept": "last",
+			"MaximumAvg": 84.58
+		},
+		{
+			"courses_dept": "laso",
+			"MaximumAvg": 78.72
+		},
+		{
+			"courses_dept": "larc",
+			"MaximumAvg": 92.8
+		},
+		{
+			"courses_dept": "lais",
+			"MaximumAvg": 86.71
+		},
+		{
+			"courses_dept": "korn",
+			"MaximumAvg": 84
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumAvg": 96.06
+		},
+		{
+			"courses_dept": "jrnl",
+			"MaximumAvg": 89.93
+		},
+		{
+			"courses_dept": "japn",
+			"MaximumAvg": 86.95
+		},
+		{
+			"courses_dept": "iwme",
+			"MaximumAvg": 84
+		},
+		{
+			"courses_dept": "itst",
+			"MaximumAvg": 93
+		},
+		{
+			"courses_dept": "ital",
+			"MaximumAvg": 91.5
+		},
+		{
+			"courses_dept": "isci",
+			"MaximumAvg": 90.44
+		},
+		{
+			"courses_dept": "info",
+			"MaximumAvg": 85.4
+		},
+		{
+			"courses_dept": "igen",
+			"MaximumAvg": 89.06
+		},
+		{
+			"courses_dept": "iar",
+			"MaximumAvg": 87.5
+		},
+		{
+			"courses_dept": "hunu",
+			"MaximumAvg": 91.33
+		},
+		{
+			"courses_dept": "hist",
+			"MaximumAvg": 93
+		},
+		{
+			"courses_dept": "hinu",
+			"MaximumAvg": 93.22
+		},
+		{
+			"courses_dept": "hgse",
+			"MaximumAvg": 95.29
+		},
+		{
+			"courses_dept": "hebr",
+			"MaximumAvg": 83.57
+		},
+		{
+			"courses_dept": "gsat",
+			"MaximumAvg": 90.29
+		},
+		{
+			"courses_dept": "grsj",
+			"MaximumAvg": 90
+		},
+		{
+			"courses_dept": "grek",
+			"MaximumAvg": 84.43
+		},
+		{
+			"courses_dept": "gpp",
+			"MaximumAvg": 93.04
+		},
+		{
+			"courses_dept": "germ",
+			"MaximumAvg": 92.25
+		},
+		{
+			"courses_dept": "geog",
+			"MaximumAvg": 90
+		},
+		{
+			"courses_dept": "geob",
+			"MaximumAvg": 88.17
+		},
+		{
+			"courses_dept": "gbpr",
+			"MaximumAvg": 85
+		},
+		{
+			"courses_dept": "frst",
+			"MaximumAvg": 96.36
+		},
+		{
+			"courses_dept": "fren",
+			"MaximumAvg": 88.5
+		},
+		{
+			"courses_dept": "fre",
+			"MaximumAvg": 88.47
+		},
+		{
+			"courses_dept": "fopr",
+			"MaximumAvg": 91
+		},
+		{
+			"courses_dept": "food",
+			"MaximumAvg": 90.68
+		},
+		{
+			"courses_dept": "fnis",
+			"MaximumAvg": 84.78
+		},
+		{
+			"courses_dept": "fnh",
+			"MaximumAvg": 93.05
+		},
+		{
+			"courses_dept": "fnel",
+			"MaximumAvg": 87.5
+		},
+		{
+			"courses_dept": "fmst",
+			"MaximumAvg": 86
+		},
+		{
+			"courses_dept": "fist",
+			"MaximumAvg": 85.38
+		},
+		{
+			"courses_dept": "fish",
+			"MaximumAvg": 94
+		},
+		{
+			"courses_dept": "fipr",
+			"MaximumAvg": 96.4
+		},
+		{
+			"courses_dept": "fhis",
+			"MaximumAvg": 79.89
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumAvg": 96.47
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumAvg": 98.8
+		},
+		{
+			"courses_dept": "eosc",
+			"MaximumAvg": 93.47
+		},
+		{
+			"courses_dept": "envr",
+			"MaximumAvg": 89.17
+		},
+		{
+			"courses_dept": "enph",
+			"MaximumAvg": 85.69
+		},
+		{
+			"courses_dept": "engl",
+			"MaximumAvg": 89.68
+		},
+		{
+			"courses_dept": "ends",
+			"MaximumAvg": 87.17
+		},
+		{
+			"courses_dept": "elec",
+			"MaximumAvg": 93.93
+		},
+		{
+			"courses_dept": "eece",
+			"MaximumAvg": 98.75
+		},
+		{
+			"courses_dept": "educ",
+			"MaximumAvg": 97.5
+		},
+		{
+			"courses_dept": "edst",
+			"MaximumAvg": 96.46
+		},
+		{
+			"courses_dept": "edcp",
+			"MaximumAvg": 95.58
+		},
+		{
+			"courses_dept": "econ",
+			"MaximumAvg": 95
+		},
+		{
+			"courses_dept": "eced",
+			"MaximumAvg": 93.72
+		},
+		{
+			"courses_dept": "dhyg",
+			"MaximumAvg": 93.72
+		},
+		{
+			"courses_dept": "dent",
+			"MaximumAvg": 94.33
+		},
+		{
+			"courses_dept": "dani",
+			"MaximumAvg": 89.27
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumAvg": 98
+		},
+		{
+			"courses_dept": "cpsc",
+			"MaximumAvg": 95
+		},
+		{
+			"courses_dept": "cpen",
+			"MaximumAvg": 86.9
+		},
+		{
+			"courses_dept": "cons",
+			"MaximumAvg": 90.39
+		},
+		{
+			"courses_dept": "comm",
+			"MaximumAvg": 94.75
+		},
+		{
+			"courses_dept": "cohr",
+			"MaximumAvg": 90.46
+		},
+		{
+			"courses_dept": "cogs",
+			"MaximumAvg": 89.33
+		},
+		{
+			"courses_dept": "coec",
+			"MaximumAvg": 82.77
+		},
+		{
+			"courses_dept": "cnto",
+			"MaximumAvg": 89.42
+		},
+		{
+			"courses_dept": "cnrs",
+			"MaximumAvg": 89.13
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumAvg": 99.19
+		},
+		{
+			"courses_dept": "clst",
+			"MaximumAvg": 88.4
+		},
+		{
+			"courses_dept": "clch",
+			"MaximumAvg": 79.5
+		},
+		{
+			"courses_dept": "civl",
+			"MaximumAvg": 96.27
+		},
+		{
+			"courses_dept": "cics",
+			"MaximumAvg": 89.68
+		},
+		{
+			"courses_dept": "chin",
+			"MaximumAvg": 86.13
+		},
+		{
+			"courses_dept": "chil",
+			"MaximumAvg": 92
+		},
+		{
+			"courses_dept": "chem",
+			"MaximumAvg": 92.57
+		},
+		{
+			"courses_dept": "chbe",
+			"MaximumAvg": 95.54
+		},
+		{
+			"courses_dept": "cens",
+			"MaximumAvg": 87.87
+		},
+		{
+			"courses_dept": "cell",
+			"MaximumAvg": 94.4
+		},
+		{
+			"courses_dept": "ceen",
+			"MaximumAvg": 94.27
+		},
+		{
+			"courses_dept": "ccst",
+			"MaximumAvg": 93.67
+		},
+		{
+			"courses_dept": "caps",
+			"MaximumAvg": 89.8
+		},
+		{
+			"courses_dept": "busi",
+			"MaximumAvg": 88.88
+		},
+		{
+			"courses_dept": "bota",
+			"MaximumAvg": 92
+		},
+		{
+			"courses_dept": "bmeg",
+			"MaximumAvg": 95.15
+		},
+		{
+			"courses_dept": "biol",
+			"MaximumAvg": 94.33
+		},
+		{
+			"courses_dept": "biof",
+			"MaximumAvg": 93.45
+		},
+		{
+			"courses_dept": "bioc",
+			"MaximumAvg": 90.57
+		},
+		{
+			"courses_dept": "baul",
+			"MaximumAvg": 85.62
+		},
+		{
+			"courses_dept": "basm",
+			"MaximumAvg": 87.56
+		},
+		{
+			"courses_dept": "basc",
+			"MaximumAvg": 86.04
+		},
+		{
+			"courses_dept": "bapa",
+			"MaximumAvg": 85.4
+		},
+		{
+			"courses_dept": "bams",
+			"MaximumAvg": 91.47
+		},
+		{
+			"courses_dept": "bama",
+			"MaximumAvg": 87.7
+		},
+		{
+			"courses_dept": "bala",
+			"MaximumAvg": 83.2
+		},
+		{
+			"courses_dept": "bait",
+			"MaximumAvg": 86.83
+		},
+		{
+			"courses_dept": "bahr",
+			"MaximumAvg": 86.7
+		},
+		{
+			"courses_dept": "bafi",
+			"MaximumAvg": 89.43
+		},
+		{
+			"courses_dept": "baen",
+			"MaximumAvg": 87.13
+		},
+		{
+			"courses_dept": "babs",
+			"MaximumAvg": 91.38
+		},
+		{
+			"courses_dept": "baac",
+			"MaximumAvg": 86.81
+		},
+		{
+			"courses_dept": "ba",
+			"MaximumAvg": 87.24
+		},
+		{
+			"courses_dept": "audi",
+			"MaximumAvg": 96.9
+		},
+		{
+			"courses_dept": "atsc",
+			"MaximumAvg": 92
+		},
+		{
+			"courses_dept": "astu",
+			"MaximumAvg": 83.14
+		},
+		{
+			"courses_dept": "astr",
+			"MaximumAvg": 91.4
+		},
+		{
+			"courses_dept": "asic",
+			"MaximumAvg": 80.79
+		},
+		{
+			"courses_dept": "asia",
+			"MaximumAvg": 86.24
+		},
+		{
+			"courses_dept": "arth",
+			"MaximumAvg": 93
+		},
+		{
+			"courses_dept": "arst",
+			"MaximumAvg": 96.94
+		},
+		{
+			"courses_dept": "arcl",
+			"MaximumAvg": 80.82
+		},
+		{
+			"courses_dept": "arch",
+			"MaximumAvg": 90
+		},
+		{
+			"courses_dept": "arbc",
+			"MaximumAvg": 83.13
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumAvg": 96
+		},
+		{
+			"courses_dept": "appp",
+			"MaximumAvg": 85.16
+		},
+		{
+			"courses_dept": "apbi",
+			"MaximumAvg": 91.86
+		},
+		{
+			"courses_dept": "anth",
+			"MaximumAvg": 92.29
+		},
+		{
+			"courses_dept": "anat",
+			"MaximumAvg": 92
+		},
+		{
+			"courses_dept": "adhe",
+			"MaximumAvg": 96.11
+		},
+		{
+			"courses_dept": "aanb",
+			"MaximumAvg": 94.44
+		}
+	]
+}

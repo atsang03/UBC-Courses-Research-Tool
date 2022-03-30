@@ -1,0 +1,1134 @@
+{
+	"title": "more than 1 group by",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 94
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"MaximumPass"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"courses_dept"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"APPLY": [
+				{
+					"MaximumPass": {
+						"MAX": "courses_pass"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"courses_dept": "thtr",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "surg",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "stat",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 56
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 92
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 82
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 54
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 5
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "spph",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumPass": 27
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "sowk",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "rhsc",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumPass": 5
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "psyc",
+			"MaximumPass": 1
+		},
+		{
+			"courses_dept": "plan",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "plan",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "phys",
+			"MaximumPass": 7
+		},
+		{
+			"courses_dept": "phys",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "phys",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "phth",
+			"MaximumPass": 78
+		},
+		{
+			"courses_dept": "phth",
+			"MaximumPass": 81
+		},
+		{
+			"courses_dept": "phrm",
+			"MaximumPass": 218
+		},
+		{
+			"courses_dept": "phil",
+			"MaximumPass": 1
+		},
+		{
+			"courses_dept": "phar",
+			"MaximumPass": 121
+		},
+		{
+			"courses_dept": "phar",
+			"MaximumPass": 79
+		},
+		{
+			"courses_dept": "phar",
+			"MaximumPass": 200
+		},
+		{
+			"courses_dept": "pcth",
+			"MaximumPass": 1
+		},
+		{
+			"courses_dept": "obst",
+			"MaximumPass": 1
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 120
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "nurs",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumPass": 7
+		},
+		{
+			"courses_dept": "musc",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "mtrl",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "mtrl",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumPass": 34
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumPass": 45
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumPass": 7
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumPass": 5
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "mine",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "midw",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "midw",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "midw",
+			"MaximumPass": 13
+		},
+		{
+			"courses_dept": "micb",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "medg",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 3
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 21
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "math",
+			"MaximumPass": 3
+		},
+		{
+			"courses_dept": "libr",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 121
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 7
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "kin",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "hgse",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "hgse",
+			"MaximumPass": 21
+		},
+		{
+			"courses_dept": "hgse",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "frst",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "fipr",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 21
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 22
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 21
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 21
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 40
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 24
+		},
+		{
+			"courses_dept": "etec",
+			"MaximumPass": 26
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 33
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 36
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 35
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 29
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 25
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 58
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 39
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 43
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 22
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 22
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 24
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 22
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 25
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 32
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 30
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 34
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 34
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 25
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 25
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 29
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 46
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 24
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 53
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 22
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 5
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 22
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 27
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 54
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 37
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 13
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "epse",
+			"MaximumPass": 13
+		},
+		{
+			"courses_dept": "eece",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "eece",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "educ",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "educ",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "educ",
+			"MaximumPass": 31
+		},
+		{
+			"courses_dept": "educ",
+			"MaximumPass": 31
+		},
+		{
+			"courses_dept": "edst",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "edst",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "edst",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "edst",
+			"MaximumPass": 13
+		},
+		{
+			"courses_dept": "edst",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "edcp",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "edcp",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "edcp",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "edcp",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "econ",
+			"MaximumPass": 3
+		},
+		{
+			"courses_dept": "dent",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 8
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 3
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 3
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 2
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 1
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 3
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 7
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 41
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 1
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 36
+		},
+		{
+			"courses_dept": "crwr",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "cpsc",
+			"MaximumPass": 6
+		},
+		{
+			"courses_dept": "cpsc",
+			"MaximumPass": 1
+		},
+		{
+			"courses_dept": "comm",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "comm",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "comm",
+			"MaximumPass": 12
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 14
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 31
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 23
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 37
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 31
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 11
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 29
+		},
+		{
+			"courses_dept": "cnps",
+			"MaximumPass": 5
+		},
+		{
+			"courses_dept": "civl",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "chbe",
+			"MaximumPass": 4
+		},
+		{
+			"courses_dept": "chbe",
+			"MaximumPass": 13
+		},
+		{
+			"courses_dept": "chbe",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "cell",
+			"MaximumPass": 5
+		},
+		{
+			"courses_dept": "ceen",
+			"MaximumPass": 15
+		},
+		{
+			"courses_dept": "bmeg",
+			"MaximumPass": 13
+		},
+		{
+			"courses_dept": "bmeg",
+			"MaximumPass": 2
+		},
+		{
+			"courses_dept": "biol",
+			"MaximumPass": 27
+		},
+		{
+			"courses_dept": "audi",
+			"MaximumPass": 9
+		},
+		{
+			"courses_dept": "audi",
+			"MaximumPass": 10
+		},
+		{
+			"courses_dept": "arst",
+			"MaximumPass": 16
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumPass": 17
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumPass": 18
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumPass": 19
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "apsc",
+			"MaximumPass": 20
+		},
+		{
+			"courses_dept": "adhe",
+			"MaximumPass": 27
+		},
+		{
+			"courses_dept": "aanb",
+			"MaximumPass": 9
+		}
+	]
+}
+
