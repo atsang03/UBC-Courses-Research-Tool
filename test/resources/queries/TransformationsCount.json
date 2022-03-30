@@ -1,0 +1,72 @@
+{
+	"title": "using COUNT",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 98
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"MinimumAvg",
+				"courses_dept",
+				"COUNT"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"courses_dept"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept"
+			],
+			"APPLY": [
+				{
+					"COUNT": {
+						"COUNT": "courses_avg"
+					}
+				},
+				{
+					"MinimumAvg": {
+						"MIN": "courses_avg"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"MinimumAvg": 98.98,
+			"courses_dept": "spph",
+			"COUNT": 1
+		},
+		{
+			"MinimumAvg": 98.21,
+			"courses_dept": "nurs",
+			"COUNT": 4
+		},
+		{
+			"MinimumAvg": 99.78,
+			"courses_dept": "math",
+			"COUNT": 1
+		},
+		{
+			"MinimumAvg": 98.08,
+			"courses_dept": "epse",
+			"COUNT": 7
+		},
+		{
+			"MinimumAvg": 98.75,
+			"courses_dept": "eece",
+			"COUNT": 1
+		},
+		{
+			"MinimumAvg": 99.19,
+			"courses_dept": "cnps",
+			"COUNT": 1
+		}
+	]
+}
