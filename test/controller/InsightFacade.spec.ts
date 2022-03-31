@@ -88,7 +88,6 @@ describe("InsightFacade", function () {
 	function assertResult(actual: any, expected: any): void {
 		expect(actual).to.have.deep.members(expected);
 		expect(actual).to.have.length(expected.length);
-		expect(actual).to.be.increases;
 	}
 
 	/*
@@ -119,7 +118,7 @@ describe("InsightFacade", function () {
 
 		folderTest<unknown, Promise<InsightResult[]>, PQErrorKind>(
 			"Dynamic InsightFacade PerformQuery tests",
-			(input) => insightFacade.performQuery(input),
+			(input) => (insightFacade.performQuery(input)),
 			"./test/resources/queries",
 			{
 				assertOnResult: assertResult,

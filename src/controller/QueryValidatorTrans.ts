@@ -12,7 +12,7 @@ export default class QueryValidatorTrans {
 	private coursesSfields: string[] = ["dept", "id", "instructor", "title", "uuid"];
 	private applyTokens: string[] = ["MAX", "MIN", "AVG", "COUNT", "SUM"];
 
-	public validation(jsonObj: any, wantedFields: string[]): boolean {
+	public validation(jsonObj: any): boolean {
 		return this.checkBody(jsonObj);
 	}
 
@@ -188,7 +188,7 @@ export default class QueryValidatorTrans {
 	private checkDir(jsonObj: any): boolean {
 		if (typeof jsonObj !== "string") {
 			return true;
-		} else if (String(jsonObj) !== "DOWN" || String(jsonObj) !== "UP") {
+		} else if (String(jsonObj) !== "DOWN" && String(jsonObj) !== "UP") {
 			return true;
 		}
 		return false;
