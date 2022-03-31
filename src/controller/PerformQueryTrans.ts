@@ -106,7 +106,7 @@ export default class PerformQueryTrans {
 	private apply
 	(result: InsightResult[], grouped: any, N: string[], F: string[], V: string[],cols: string[],G: string[]):
 		InsightResult[] {
-		let val;
+		let val: number;
 		Object.values(grouped).forEach((obj) => {
 			let firstElement: any = this.getFirstElement(obj);
 			let resultObj: InsightResult = {};
@@ -116,19 +116,19 @@ export default class PerformQueryTrans {
 			}
 			for (let i = 0; i < F.length; i++) {
 				if (F[i] === "MAX") {
-					val = this.getMax(obj,V[i]);
+					val = Number(this.getMax(obj,V[i]));
 					tempObj[N[i]] = val;
 				} else if (F[i] === "MIN") {
-					val = this.getMin(obj,V[i]);
+					val = Number(this.getMin(obj,V[i]));
 					tempObj[N[i]] = val;
 				} else if (F[i] === "AVG") {
-					val = this.getAvg(obj,V[i]);
+					val = Number(this.getAvg(obj,V[i]));
 					tempObj[N[i]] = val;
 				} else if (F[i] === "COUNT") {
-					val = this.getCount(obj,V[i]);
+					val = Number(this.getCount(obj,V[i]));
 					tempObj[N[i]] = val;
 				} else if (F[i] === "SUM") {
-					val = this.getSum(obj,V[i]);
+					val = Number(this.getSum(obj,V[i]));
 					tempObj[N[i]] = val;
 				}
 			}
@@ -170,7 +170,7 @@ export default class PerformQueryTrans {
 	}
 
 	private getMin(jsonObj: any, value: string): number  {
-		let min = 100;
+		let min = 1000;
 		for (let obj of jsonObj) {
 			if (min > obj[value]) {
 				min = obj[value];
@@ -219,7 +219,6 @@ export default class PerformQueryTrans {
 				let i = 0;
 				let res = 0;
 				while(i < sortKeys.length && res === 0) {
-					console.log("test");
 					if (a[sortKeys[i]] > b[sortKeys[i]]) {
 						res = 1;
 					} else if (a[sortKeys[i]] < b[sortKeys[i]]) {

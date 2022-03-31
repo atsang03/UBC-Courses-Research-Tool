@@ -131,8 +131,9 @@ export default class InsightFacade implements IInsightFacade {
 			});
 			if (num !== undefined && capacity !== undefined && furniture !== undefined && type !== undefined
 				&& href !== undefined) {
-				this.roomList.push(new Room(building.fullname, building.shortname, num, building.shortname
-					+ num,  building.address,  0, 0, capacity, type, furniture, href, id));
+				this.roomList.push(new Room(building.shortname, building.fullname, num, building.fullname
+					+ num,  building.address,  Number(0), Number(0),
+				Number(capacity), type, furniture, href, id));
 			}
 		} else {
 			if (tbody.childNodes === undefined || tbody.childNodes === null) {

@@ -68,7 +68,7 @@ describe("InsightFacade", function () {
 		});
 
 		it("should add a room type dataset", function () {
-			const id: string = "courses";
+			const id: string = "rooms";
 			const content: string = datasetContents.get("rooms") ?? "";
 			const expected: string[] = [id];
 			return insightFacade.addDataset(id, content, InsightDatasetKind.Rooms).then((result: string[]) => {
@@ -79,8 +79,9 @@ describe("InsightFacade", function () {
 		it("Should remove a valid dataset", function () {
 			const id: string = "courses";
 			// console.log(insightFacade.listDatasets());
+			console.log(fs.readdirSync("data") === []);
 			return insightFacade.removeDataset(id).then((result: string) => {
-				expect(fs.readdirSync("data")).to.deep.equal([]);
+				expect(fs.readdirSync("data")).to.deep.equal(["rooms"]);
 			});
 		});
 	});
