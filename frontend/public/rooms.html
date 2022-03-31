@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+	<head>
+		<title>INSIGHT UBC</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+		<link href="./style.css" rel="stylesheet" />
+	</head>
+	<body>
+	<div>
+		<link href="./rooms.css" rel="stylesheet" />
+		<div class="rooms-container">
+			<div class="rooms-header-container">
+				<h1 class="rooms-text">INSIGHT UBC</h1>
+			</div>
+			<div class="rooms-sub-header-container">
+				<div class="rooms-course-section-container">
+					<a href="courses.html" class="rooms-link-to-course">Courses</a>
+				</div>
+				<div class="rooms-room-section-container">
+					<a href="rooms.html" class="rooms-link-to-room">Rooms</a>
+				</div>
+			</div>
+			<div class="rooms-search-form-container">
+				<div class="rooms-search-content-container">
+					<div>
+						<label for="building-name">Full building name:</label>
+						<input type="text" id="building-name" name="building-name" required size="10">
+					</div>
+					<div>
+						<label for="building-abv">Building abbreviation:</label>
+						<input type="text" id="building-abv" name="building-abv" required size="10">
+					</div>
+					<div>
+						<label for="room-number">Room Number:</label>
+						<input type="text" id="room-number" name="room-number" required size="10">
+					</div>
+					<div>
+						<label for="room-name">Room Name:</label>
+						<input type="text" id="room-name" name="room-name" required size="10">
+					</div>
+					<div>
+						<label for="address">Address:</label>
+						<input type="text" id="address" name="address" required size="10">
+					</div>
+					<div>
+						<label for="latitude">Building Latitude:</label>
+						<input type="number" id="latitude" name="latitude" size="10">
+					</div>
+					<div>
+						<label for="longitude">Building Longitude:</label>
+						<input type="number" id="longitude" name="longitude" size="10">
+					</div>
+					<div>
+						<label for="seats-number">Number of seats:</label>
+						<input type="number" id="seats-number" name="seats-number" min="0" size="10">
+					</div>
+					<div>
+						<label for="room-type">Room Type:</label>
+						<input type="text" id="room-type" name="room-type" required size="10">
+					</div>
+					<div>
+						<label for="room-furniture">Room furniture:</label>
+						<input type="text" id="room-furniture" name="room-furniture" required size="10">
+					</div>
+					<div>
+						<label for="room-link">Room Link:</label>
+						<input type="text" id="room-link" name="room-link" required size="10">
+					</div>
+				</div>
+				<div class="rooms-search-bar-button-container">
+					<div class="rooms-search-button-container">
+						<a href="results.html" class="rooms-search-button button">Search</a>
+					</div>
+					<div class="rooms-clear-button-container">
+						<a href="rooms.html" class="rooms-clear-button button">Clear All</a>
+					</div>
+				</div>
+			</div>
+			<div class="rooms-result-container"></div>
+			<div class="rooms-footer-container">
+				<h4>This is a CS310 Project by team 659</h4>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="/frontend.js"></script>
+	</body>
+	</html>
