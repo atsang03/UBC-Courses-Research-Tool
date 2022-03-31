@@ -13,16 +13,18 @@ import Query from "./Query";
 import {ChildNode, Document, Element, Node, ParentNode, parse} from "parse5";
 import Building from "./Building";
 import Room from "./Room";
+import * as http from "http";
 
 export default class InsightFacade implements IInsightFacade {
 	private datasetList: any[] = [];
 	private secList: any[] = [];
 	private roomList: any[] = [];
 	private buildingList: any[] = [];
+	private idList: string[] = [];
 	// Function to add dataset
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		if (id.includes("_")) {
-			throw new InsightError("invalid id");
+		if (id.includes("_") || id.trim().length === 0 || this.idList.includes(id)) {
+			return Promise.reject(new InsightError("invalid id/ already used id"));
 		}
 		if (kind === InsightDatasetKind.Courses) {
 			return await this.addCourse(id, content, kind);
@@ -53,7 +55,10 @@ export default class InsightFacade implements IInsightFacade {
 		}));
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
-		this.datasetList.forEach((element) => idList.push(element.id));
+		this.datasetList.forEach((element) => {
+			idList.push(element.id);
+			this.idList.push(element.id);
+		});
 		fs.writeFileSync(`data/${id}`, JSON.stringify(this.secList));
 		return Promise.resolve(idList);
 	}
@@ -203,7 +208,7 @@ export default class InsightFacade implements IInsightFacade {
 		if (result !== null) {
 			return result;
 		} else {
-			throw new InsightError("invalid dataset");
+			return Promise.reject(new InsightError("invalid dataset"));
 		}
 	}
 
@@ -239,10 +244,10 @@ export default class InsightFacade implements IInsightFacade {
 
 	// Function to remove dataset
 	public removeDataset(id: string): Promise<string> {
-		if (id.includes("_")) {
-			throw new InsightError("invalid id");
+		if (id.includes("_") || id.trim().length === 0) {
+			return Promise.reject(new InsightError("invalid id"));
 		} else if (!fs.existsSync(`data/${id}`)) {
-			throw new NotFoundError("No dataset with this id found");
+			return Promise.reject("No dataset with this id found");
 		}
 		fs.unlinkSync(`data/${id}`);
 		this.datasetList.forEach((element) => {
@@ -258,4 +263,16 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.resolve(id);
 	}
 
+	// http://cs310.students.cs.ubc.ca:11316/api/v1/project_team<TEAM NUMBER>/<ADDRESS>
+	public getCoordinates(address: string) {
+		address = encodeURI(address);
+		const options = {
+			host: "http://cs310.students.cs.ubc.ca",
+			port: "11316",
+			path: "/api/v1/project_team659/," + address,
+			method: "GET"
+		};
+		return http.get(options);
+
+	}
 }

@@ -84,6 +84,7 @@ describe("InsightFacade", function () {
 				expect(fs.readdirSync("data")).to.deep.equal(["rooms"]);
 			});
 		});
+
 	});
 
 	function assertResult(actual: any, expected: any): void {
