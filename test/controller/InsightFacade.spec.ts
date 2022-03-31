@@ -21,6 +21,7 @@ describe("InsightFacade", function () {
 	// automatically be loaded in the 'before' hook.
 	const datasetsToLoad: {[key: string]: string} = {
 		courses: "./test/resources/archives/courses.zip",
+		rooms: "./test/resources/archives/rooms.zip"
 	};
 
 	before(function () {
@@ -65,13 +66,25 @@ describe("InsightFacade", function () {
 				expect(result).to.deep.equal(expected);
 			});
 		});
+
+		it("should add a room type dataset", function () {
+			const id: string = "rooms";
+			const content: string = datasetContents.get("rooms") ?? "";
+			const expected: string[] = [id];
+			return insightFacade.addDataset(id, content, InsightDatasetKind.Rooms).then((result: string[]) => {
+				expect(result).to.deep.equal(expected);
+			});
+		});
+
 		it("Should remove a valid dataset", function () {
 			const id: string = "courses";
 			// console.log(insightFacade.listDatasets());
+			// console.log(fs.readdirSync("data") === []);
 			return insightFacade.removeDataset(id).then((result: string) => {
-				expect(fs.readdirSync("data")).to.deep.equal([]);
+				expect(fs.readdirSync("data")).to.deep.equal(["rooms"]);
 			});
 		});
+
 	});
 
 	function assertResult(actual: any, expected: any): void {

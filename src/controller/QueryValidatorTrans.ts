@@ -8,6 +8,8 @@ export default class QueryValidatorTrans {
 	private roomsFields: string[] =
 		["fullname", "shortname", "number", "name", "address", "lat", "lon", "seats", "type", "furniture", "href"];
 
+	private roomsMFields: string[] = ["lat","lon","seats"];
+
 	private coursesMfields: string[] = ["avg", "pass", "fail", "audit", "year"];
 	private coursesSfields: string[] = ["dept", "id", "instructor", "title", "uuid"];
 	private applyTokens: string[] = ["MAX", "MIN", "AVG", "COUNT", "SUM"];
@@ -117,19 +119,36 @@ export default class QueryValidatorTrans {
 		if (!this.applyTokens.includes(applyToken)) {
 			return true;
 		}
-		let applyTokenValue: string = String(jsonObj[applyToken]);
-		let key: string = applyTokenValue.split("_")[0];
-		let field: string = applyTokenValue.split("_")[1];
-		if (this.coursesUsage) {
-			if (key !== this.dataId || (!this.coursesMfields.includes(field) && !this.coursesSfields.includes(field))) {
-				return true;
+		if (applyToken === "COUNT") {
+			let applyTokenValue: string = String(jsonObj[applyToken]);
+			let key: string = applyTokenValue.split("_")[0];
+			let field: string = applyTokenValue.split("_")[1];
+			if (this.coursesUsage) {
+				if (key !== this.dataId || (!this.coursesMfields.includes(field))) {
+					return true;
+				}
+			} else {
+				if (key !== this.dataId || !this.roomsFields.includes(field)) {
+					return true;
+				}
 			}
+			return false;
 		} else {
-			if (key !== this.dataId || !this.roomsFields.includes(field)) {
-				return true;
+			let applyTokenValue: string = String(jsonObj[applyToken]);
+			let key: string = applyTokenValue.split("_")[0];
+			let field: string = applyTokenValue.split("_")[1];
+			if (this.coursesUsage) {
+				if (key !== this.dataId || (!this.coursesMfields.includes(field) &&
+					!this.coursesSfields.includes(field))) {
+					return true;
+				}
+			} else {
+				if (key !== this.dataId || !this.roomsMFields.includes(field)) {
+					return true;
+				}
 			}
+			return false;
 		}
-		return false;
 	}
 
 	private checkOptions(jsonObj: any): boolean {
