@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+	<head>
+		<title>INSIGHT UBC</title>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+		<link href="./style.css" rel="stylesheet" />
+	</head>
+	<body>
+	<div>
+		<link href="./courses.css" rel="stylesheet" />
+		<div class="courses-container">
+			<div class="courses-header-container">
+				<h1 class="courses-text">INSIGHT UBC</h1>
+			</div>
+			<div class="courses-sub-header-container">
+				<div class="courses-course-section-container">
+					<a href="courses.html" class="courses-link-to-course">Courses</a>
+				</div>
+				<div class="courses-room-section-container">
+					<a href="rooms.html" class="courses-link-to-room">Rooms</a>
+				</div>
+			</div>
+			<div class="courses-search-form-container">
+				<div class="courses-search-content-container">
+					<div>
+						<label for="department">Department:</label>
+						<input type="text" id="department" name="department" size="10">
+					</div>
+					<div>
+						<label for="course-number">Course Number:</label>
+						<input type="text" id="course-number" name="course-number" required size="10">
+					</div>
+					<div>
+						<label for="course-average">Course Average:</label>
+						<input type="number" id="course-average" name="course-average" min="0" max="100" size="10">
+					</div>
+					<div>
+						<label for="instructor-name">Instructor Name:</label>
+						<input type="text" id="instructor-name" name="instructor-name" required size="10">
+					</div>
+					<div>
+						<label for="course-title">Course Title:</label>
+						<input type="text" id="course-title" name="course-title" required size="10">
+					</div>
+					<div>
+						<label for="passed-number">Passed Students:</label>
+						<input type="number" id="passed-number" name="passed-number" min="0" size="10">
+					</div>
+					<div>
+						<label for="failed-number">Failed Students:</label>
+						<input type="number" id="failed-number" name="failed-number" min="0" size="10">
+					</div>
+					<div>
+						<label for="audited-number">Audited Students:</label>
+						<input type="number" id="audited-number" name="audited-number" min="0" size="10">
+					</div>
+					<div>
+						<label for="uuid">Course UUID:</label>
+						<input type="text" id="uuid" name="uuid" required size="10">
+					</div>
+					<div>
+						<label for="year">Offering Year:</label>
+						<input type="number" id="year" name="year" min="1900" max="2030" size="10">
+					</div>
+				</div>
+				<div class="courses-search-bar-button-container">
+					<div class="courses-search-button-container">
+						<a href="results.html" class="courses-search-button button">Search</a>
+					</div>
+					<div class="courses-clear-button-container">
+						<a href="courses.html" class="courses-clear-button button">
+							Clear All
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="courses-result-container"></div>
+			<div class="courses-footer-container">
+				<h4>This is a CS310 Project by team 659</h4>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/frontend.js"></script>
+	</body>
+</html>
