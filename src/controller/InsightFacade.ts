@@ -84,8 +84,11 @@ export default class InsightFacade implements IInsightFacade {
 			}));
 		});
 		await Promise.all(promises);
-		console.log(this.roomList);
-		return [];
+		this.datasetList.push({id: id, kind: kind, numRows: this.roomList.length});
+		this.datasetList.forEach((element) => idList.push(element.id));
+		fs.writeFileSync(`data/${id}`, JSON.stringify(this.roomList));
+		this.roomList = [];
+		return Promise.resolve(idList);
 	}
 
 	/*
