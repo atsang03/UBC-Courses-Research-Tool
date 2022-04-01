@@ -6,7 +6,18 @@ function handleClickMe() {
 
 function searchResults() {
 	let ins_name = document.getElementById("instructor-name").value;
-	alert("Button Clicked!"+ins_name);
-	let obj: any = {}
+	let instructorSearchObj: any = {
+		"WHERE": {
+			"IS": {
+				"courses_instructor": {}
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": ["courses_instructor"]
+		}
+	}
+	instructorSearchObj["WHERE"]["IS"]["courses_instructor"] = String(ins_name);
+	alert(instructorSearchObj);
+
 }
 

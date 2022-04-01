@@ -100,6 +100,7 @@ export default class InsightFacade implements IInsightFacade {
 	get room levle info
 	*/
 	private roomDFS(tbody: any, building: Building, id: string) {
+		// console.log(tbody);
 		if (tbody.nodeName === "tr") {
 			let num;
 			let capacity;
@@ -173,7 +174,7 @@ export default class InsightFacade implements IInsightFacade {
 					}
 					if (tclass === "views-field views-field-field-building-address") {
 						addressvalue =  tr.childNodes[0].value.trim();
-						// coords = this.getCoordinates(addressvalue);
+						this.getCoordinates(addressvalue);
 					}
 					if (tclass === "views-field views-field-nothing") {
 						tr.childNodes.forEach((child: any) => {
@@ -186,8 +187,8 @@ export default class InsightFacade implements IInsightFacade {
 					}
 					if (codevalue !== undefined && titlevalue !== undefined && addressvalue !== undefined
 						&& href !== undefined) {
-						this.buildingList.push([href, new Building(codevalue, titlevalue, addressvalue, coords[0],
-							coords[1])]);
+						this.buildingList.push([href, new Building(codevalue, titlevalue, addressvalue, 0,
+							0)]);
 					}
 				}
 			});
@@ -267,22 +268,16 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	// http://cs310.students.cs.ubc.ca:11316/api/v1/project_team<TEAM NUMBER>/<ADDRESS>
-	public getCoordinates(address: string){
+	private getCoordinates(address: string) {
 		address = encodeURI(address);
-		let coords: any = http.get("http://cs310.students.cs.ubc.ca:11316/api/v1/project_team659/" + address,
-			(readable) => {
-				readable.on("data", (chunk) => {
-					let object = JSON.parse(chunk.toString());
-					let lat: number = object["lat"];
-					let lon: number = object["lon"];
-					let coords1: number[] = [lon, lat];
-					if (object.error === undefined) {
-						// return Promise.resolve(coords1);
-					}
+		return new Promise(function() {
+			http.get("http://cs310.students.cs.ubc.ca:11316/api/v1/project_team659/" + address,
+				(result) => {
+					result.on("data",(response) => {
+						console.log(JSON.parse(response.toString()));
+					});
 				});
-			});
-		console.log(coords);
-		// return Promise.resolve([]);
-	}
+		});
 
+	}
 }
