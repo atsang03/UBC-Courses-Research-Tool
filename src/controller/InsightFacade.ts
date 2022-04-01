@@ -157,6 +157,7 @@ export default class InsightFacade implements IInsightFacade {
 			let titlevalue: string;
 			let addressvalue: string;
 			let href: string;
+			let coords: any[];
 			tbody.childNodes.forEach((tr: any) => {
 				if (tr.nodeName === "td") {
 					let tclass = tr.attrs[0].value;
@@ -172,6 +173,7 @@ export default class InsightFacade implements IInsightFacade {
 					}
 					if (tclass === "views-field views-field-field-building-address") {
 						addressvalue =  tr.childNodes[0].value.trim();
+						// coords = this.getCoordinates(addressvalue);
 					}
 					if (tclass === "views-field views-field-nothing") {
 						tr.childNodes.forEach((child: any) => {
@@ -184,7 +186,8 @@ export default class InsightFacade implements IInsightFacade {
 					}
 					if (codevalue !== undefined && titlevalue !== undefined && addressvalue !== undefined
 						&& href !== undefined) {
-						this.buildingList.push([href, new Building(codevalue, titlevalue, addressvalue)]);
+						this.buildingList.push([href, new Building(codevalue, titlevalue, addressvalue, coords[0],
+							coords[1])]);
 					}
 				}
 			});
@@ -264,15 +267,22 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	// http://cs310.students.cs.ubc.ca:11316/api/v1/project_team<TEAM NUMBER>/<ADDRESS>
-	public getCoordinates(address: string) {
+	public getCoordinates(address: string){
 		address = encodeURI(address);
-		const options = {
-			host: "http://cs310.students.cs.ubc.ca",
-			port: "11316",
-			path: "/api/v1/project_team659/," + address,
-			method: "GET"
-		};
-		return http.get(options);
-
+		let coords: any = http.get("http://cs310.students.cs.ubc.ca:11316/api/v1/project_team659/" + address,
+			(readable) => {
+				readable.on("data", (chunk) => {
+					let object = JSON.parse(chunk.toString());
+					let lat: number = object["lat"];
+					let lon: number = object["lon"];
+					let coords1: number[] = [lon, lat];
+					if (object.error === undefined) {
+						// return Promise.resolve(coords1);
+					}
+				});
+			});
+		console.log(coords);
+		// return Promise.resolve([]);
 	}
+
 }
