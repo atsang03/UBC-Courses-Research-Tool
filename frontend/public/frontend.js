@@ -1,23 +1,13 @@
-document.getElementById("click-me-button").addEventListener("click", handleClickMe);
-
+let request = new XMLHttpRequest();
+document.getElementById("btn").addEventListener("click", handleClickMe);
+let resultLocation = document.getElementById("posting");
 function handleClickMe() {
-	alert("Button Clicked!");
+	let data = document.getElementById("input").value;
+	renderHTML(data);
+	alert("Getting Result... Press OK to continue");
 }
 
-function searchResults() {
-	let ins_name = document.getElementById("instructor-name").value;
-	let instructorSearchObj: any = {
-		"WHERE": {
-			"IS": {
-				"courses_instructor": {}
-			}
-		},
-		"OPTIONS": {
-			"COLUMNS": ["courses_instructor"]
-		}
-	}
-	instructorSearchObj["WHERE"]["IS"]["courses_instructor"] = String(ins_name);
-	alert(instructorSearchObj);
-
+function renderHTML(data) {
+	resultLocation.insertAdjacentHTML("beforeend",data);
 }
 

@@ -1,11 +1,25 @@
 import express, {Application, Request, Response} from "express";
 import * as http from "http";
 import cors from "cors";
+import {InsightDatasetKind, InsightError} from "../controller/IInsightFacade";
+import InsightFacade from "../controller/InsightFacade";
+import * as fs from "fs-extra";
 
 export default class Server {
 	private readonly port: number;
 	private express: Application;
 	private server: http.Server | undefined;
+	private query: InsightFacade = new InsightFacade();
+	private datasetContents = new Map<string, string>();
+	private datasetsToLoad: {[key: string]: string} = {
+		courses: "./test/resources/archives/courses.zip",
+		rooms: "./test/resources/archives/rooms.zip"
+	};
+
+	private coursesData: string = fs.readFileSync("data/courses").toString();
+	private roomsData: string = fs.readFileSync("data/rooms").toString();
+	private datasets: string[] = ["courses","rooms"];
+
 
 	constructor(port: number) {
 		console.info(`Server::<init>( ${port} )`);
@@ -83,10 +97,47 @@ export default class Server {
 		// This is an example endpoint this you can invoke by accessing this URL in your browser:
 		// http://localhost:4321/echo/hello
 		this.express.get("/echo/:msg", Server.echo);
-
 		// TODO: your other endpoints should go here
-
+		this.express.put("/dataset/:id/:kind", (req,res) => {
+			try {
+				if (req.params.kind === "rooms") {
+					res.status(200).json(
+						{result: this.query.addDataset(req.params.id,
+							req.body.toString("base64"),InsightDatasetKind.Rooms)});
+				} else if (req.params.kind === "courses") {
+					res.status(200).json(
+						{result: this.query.addDataset(req.params.id,
+							req.body.toString("base64"),InsightDatasetKind.Courses)});
+				} else {
+					new InsightError();
+				}
+			} catch (err) {
+				res.status(400).json({error: String(err)});
+			}
+		});
+		this.express.delete("/dataset/:id",(req,res) => {
+			try {
+				res.status(200).json({result: this.query.removeDataset(req.params.id)});
+			} catch (err) {
+				if (err === "InsightError") {
+					res.status(400).json({error: String(err)});
+				} else {
+					res.status(404).json({error: String(err)});
+				}
+			}
+		});
+		this.express.post("/query",(req,res) => {
+			try {
+				res.status(200).json({result: this.query.performQuery(req.body)});
+			} catch (err) {
+				res.status(400).json({error: String(err)});
+			}
+		});
+		this.express.get("/datasets", (req, res) => {
+			res.status(200).json({result: this.query.listDatasets()});
+		});
 	}
+
 
 	// The next two methods handle the echo service.
 	// These are almost certainly not the best place to put these, but are here for your reference.
