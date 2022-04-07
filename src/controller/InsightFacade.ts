@@ -65,6 +65,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	public async addRooms(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		let idList: string[] = [];
+		let promises2: Array<Promise<any> | undefined > = [];
 		let promises: Array<Promise<any> | undefined > = [];
 		let zip = new JSZip();
 		let tbody: any;
@@ -78,6 +79,10 @@ export default class InsightFacade implements IInsightFacade {
 		}));
 		await Promise.all(promises);
 		this.buildingDFS(tbody);
+		this.buildingList.forEach((building) => {
+			promises2.push(this.getCoordinates(building[1].address, building));
+		});
+		await Promise.all(promises2);
 		this.buildingList.forEach((building) => {
 			let filepath = "rooms" + building[0].substring(1);
 			promises.push(aPromise.file(filepath)?.async("string").then((filecontent) => {
@@ -137,7 +142,7 @@ export default class InsightFacade implements IInsightFacade {
 			if (num !== undefined && capacity !== undefined && furniture !== undefined && type !== undefined
 				&& href !== undefined) {
 				this.roomList.push(new Room(building.shortname, building.fullname, num, building.fullname
-					+ num,  building.address,  Number(0), Number(0),
+					+ num,  building.address,  building.lat, building.lon,
 				Number(capacity), type, furniture, href, id));
 			}
 		} else {
@@ -152,12 +157,12 @@ export default class InsightFacade implements IInsightFacade {
 
 	// get building level info
 	private buildingDFS(tbody: any) {
+		let coords: Array<Promise<any>> = [];
 		if (tbody.nodeName === "tr") {
 			let codevalue: string;
 			let titlevalue: string;
 			let addressvalue: string;
 			let href: string;
-			let coords: any[];
 			tbody.childNodes.forEach((tr: any) => {
 				if (tr.nodeName === "td") {
 					let tclass = tr.attrs[0].value;
@@ -173,7 +178,6 @@ export default class InsightFacade implements IInsightFacade {
 					}
 					if (tclass === "views-field views-field-field-building-address") {
 						addressvalue =  tr.childNodes[0].value.trim();
-						// coords = this.getCoordinates(addressvalue);
 					}
 					if (tclass === "views-field views-field-nothing") {
 						tr.childNodes.forEach((child: any) => {
@@ -186,8 +190,10 @@ export default class InsightFacade implements IInsightFacade {
 					}
 					if (codevalue !== undefined && titlevalue !== undefined && addressvalue !== undefined
 						&& href !== undefined) {
-						this.buildingList.push([href, new Building(codevalue, titlevalue, addressvalue, coords[0],
-							coords[1])]);
+						this.buildingList.push([href, new Building(codevalue, titlevalue, addressvalue, 0,
+							0)]);
+						// this.buildingList.push([href, new Building(codevalue, titlevalue, addressvalue, coords[0],
+						// 	coords[1])]);
 					}
 				}
 			});
@@ -267,22 +273,25 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	// http://cs310.students.cs.ubc.ca:11316/api/v1/project_team<TEAM NUMBER>/<ADDRESS>
-	public getCoordinates(address: string){
-		address = encodeURI(address);
-		let coords: any = http.get("http://cs310.students.cs.ubc.ca:11316/api/v1/project_team659/" + address,
-			(readable) => {
-				readable.on("data", (chunk) => {
-					let object = JSON.parse(chunk.toString());
-					let lat: number = object["lat"];
-					let lon: number = object["lon"];
-					let coords1: number[] = [lon, lat];
-					if (object.error === undefined) {
-						// return Promise.resolve(coords1);
-					}
+	public getCoordinates(address: string, building: Building): Promise<number[]> {
+		return new Promise((resolve) => {
+			address = encodeURI(address);
+			let latlon: number[] = [];
+			http.get("http://cs310.students.cs.ubc.ca:11316/api/v1/project_team659/" + address,
+				(readable) => {
+					readable.on("data", (chunk) => {
+						let index = this.buildingList.indexOf(building);
+						let object = JSON.parse(chunk.toString());
+						if (object.error === undefined) {
+							this.buildingList[index][1].lat = object.lat;
+							this.buildingList[index][1].lon = object.lon;
+							resolve([object.lat, object.lon]);
+						} else {
+							this.buildingList.splice(this.buildingList.indexOf(building) , 1);
+							resolve([]);
+						}
+					});
 				});
-			});
-		console.log(coords);
-		// return Promise.resolve([]);
+		});
 	}
-
 }
