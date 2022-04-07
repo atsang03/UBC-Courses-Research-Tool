@@ -101,7 +101,7 @@ export default class Server {
 			try {
 				if (req.params.kind === "rooms") {
 					this.query.addDataset(String(req.params.id),
-						req.body.toString("base64"),InsightDatasetKind.Rooms)
+						(req.body as Buffer).toString("base64"),InsightDatasetKind.Rooms)
 						.then((resul) => {
 							res.status(200).json({result: resul});
 						});
@@ -111,7 +111,7 @@ export default class Server {
 						res.status(200).json({result: resul});
 					});
 				} else {
-					new InsightError();
+					res.status(400).json({error: "bad kind"});
 				}
 			} catch (err) {
 				res.status(400).json({error: String(err)});
@@ -123,7 +123,7 @@ export default class Server {
 					res.status(200).json({result: resul});
 				});
 			} catch (err) {
-				if (err === "InsightError") {
+				if (err instanceof InsightError) {
 					res.status(400).json({error: String(err)});
 				} else {
 					res.status(404).json({error: String(err)});

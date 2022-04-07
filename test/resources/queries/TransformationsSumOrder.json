@@ -1,0 +1,57 @@
+{
+	"title": "testinig order",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"IS": {
+						"rooms_furniture": "Classroom-Movable Tables & Chairs"
+					}
+				},
+				{
+					"GT": {
+						"rooms_seats": 200
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname",
+				"SumSeats",
+				"rooms_type"
+			],
+			"ORDER": "SumSeats"
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname",
+				"rooms_type"
+			],
+			"APPLY": [
+				{
+					"SumSeats": {
+						"SUM": "rooms_seats"
+					}
+				},
+				{
+					"minLat": {
+						"MIN": "rooms_lat"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"rooms_shortname": "OSBO",
+			"SumSeats": 442,
+			"rooms_type": "Open Design General Purpose"
+		},
+		{
+			"rooms_shortname": "SRC",
+			"SumSeats": 897,
+			"rooms_type": "TBD"
+		}
+	]
+}

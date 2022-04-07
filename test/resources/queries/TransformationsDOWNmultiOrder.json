@@ -1,0 +1,725 @@
+{
+	"title": "down multi order",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 95
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sumpass",
+				"sumfail",
+				"courses_dept"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"courses_dept",
+					"sumfail",
+					"sumpass"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"APPLY": [
+				{
+					"sumpass": {
+						"SUM": "courses_pass"
+					}
+				},
+				{
+					"sumfail": {
+						"SUM": "courses_fail"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 164,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 92,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 162,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "phil"
+		},
+		{
+			"sumpass": 121,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "mtrl"
+		},
+		{
+			"sumpass": 45,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "libr"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "fipr"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 85,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 79,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 67,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 39,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "bmeg"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		}
+	]
+}

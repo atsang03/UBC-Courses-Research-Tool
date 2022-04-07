@@ -80,8 +80,10 @@ describe("InsightFacade", function () {
 			const id: string = "courses";
 			// console.log(insightFacade.listDatasets());
 			// console.log(fs.readdirSync("data") === []);
-			return insightFacade.removeDataset(id).then((result: string) => {
-				expect(fs.readdirSync("data")).to.deep.equal(["rooms"]);
+			return insightFacade.removeDataset(id).then(() => {
+				insightFacade.removeDataset("rooms");
+			}).then(() => {
+				expect(fs.readdirSync("data")).to.deep.equal([]);
 			});
 		});
 
@@ -107,6 +109,7 @@ describe("InsightFacade", function () {
 			// Will *fail* if there is a problem reading ANY dataset.
 			const loadDatasetPromises = [
 				insightFacade.addDataset("courses", datasetContents.get("courses") ?? "", InsightDatasetKind.Courses),
+				insightFacade.addDataset("rooms", datasetContents.get("rooms") ?? "", InsightDatasetKind.Rooms)
 			];
 			return Promise.all(loadDatasetPromises);
 		});

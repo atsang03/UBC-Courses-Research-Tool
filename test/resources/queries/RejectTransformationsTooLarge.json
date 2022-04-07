@@ -1,0 +1,43 @@
+{
+	"title": "too large result",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 0
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sumpass",
+				"sumfail",
+				"courses_dept"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"courses_dept"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"APPLY": [
+				{
+					"sumpass": {
+						"SUM": "courses_pass"
+					}
+				},
+				{
+					"sumfail": {
+						"SUM": "courses_fail"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "ResultTooLargeError"
+}

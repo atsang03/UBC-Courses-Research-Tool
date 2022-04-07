@@ -1,0 +1,8450 @@
+{
+	"title": "multiple order key UP",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 90
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sumpass",
+				"sumfail",
+				"courses_dept"
+			],
+			"ORDER": {
+				"dir": "UP",
+				"keys": [
+					"courses_dept",
+					"sumfail",
+					"sumpass"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"APPLY": [
+				{
+					"sumpass": {
+						"SUM": "courses_pass"
+					}
+				},
+				{
+					"sumfail": {
+						"SUM": "courses_fail"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "aanb"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 33,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 33,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "adhe"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "anat"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "anat"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "anth"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "anth"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "anth"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 1,
+			"courses_dept": "apbi"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "apsc"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "arst"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "arth"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "arth"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "arth"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "arth"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "arth"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "astr"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "astr"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "atsc"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 66,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "audi"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "babs"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "bams"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "bams"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "bioc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "bioc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "bioc"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "bioc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "biof"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "biof"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "biof"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "biof"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "biol"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "bmeg"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "bmeg"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "bmeg"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "bmeg"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "bota"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "bota"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "bota"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "ccst"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "ceen"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "ceen"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "ceen"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "ceen"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "ceen"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "ceen"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "cell"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "chbe"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "chem"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "chem"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "chem"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "chem"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "chem"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "chem"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "chem"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "chil"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "chil"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "chil"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "chil"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 92,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 100,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 264,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 280,
+			"sumfail": 0,
+			"courses_dept": "civl"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 33,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 33,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 39,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 53,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 57,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 59,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 75,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 84,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 108,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 116,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 122,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 214,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 1,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 1,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 51,
+			"sumfail": 1,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 59,
+			"sumfail": 1,
+			"courses_dept": "cnps"
+		},
+		{
+			"sumpass": 78,
+			"sumfail": 0,
+			"courses_dept": "cohr"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "comm"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "comm"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "comm"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "comm"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "cons"
+		},
+		{
+			"sumpass": 206,
+			"sumfail": 0,
+			"courses_dept": "cons"
+		},
+		{
+			"sumpass": 274,
+			"sumfail": 10,
+			"courses_dept": "cons"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 118,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 126,
+			"sumfail": 0,
+			"courses_dept": "cpsc"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "crwr"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "dent"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "dhyg"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 66,
+			"sumfail": 0,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 1,
+			"courses_dept": "eced"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 53,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 112,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 128,
+			"sumfail": 0,
+			"courses_dept": "econ"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 45,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 87,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 102,
+			"sumfail": 0,
+			"courses_dept": "edcp"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 68,
+			"sumfail": 0,
+			"courses_dept": "edst"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 137,
+			"sumfail": 0,
+			"courses_dept": "educ"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 84,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "elec"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "elec"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "elec"
+		},
+		{
+			"sumpass": 53,
+			"sumfail": 0,
+			"courses_dept": "elec"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "eosc"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 33,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 39,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 45,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 45,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 49,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 51,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 51,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 57,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 57,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 59,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 61,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 61,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 63,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 66,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 66,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 67,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 67,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 68,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 68,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 69,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 71,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 74,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 74,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 75,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 76,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 78,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 78,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 79,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 82,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 82,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 84,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 84,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 84,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 85,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 85,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 86,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 86,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 87,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 87,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 88,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 90,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 92,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 92,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 93,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 96,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 100,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 102,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 104,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 108,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 109,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 114,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 118,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 134,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 139,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 142,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 146,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 151,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 158,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 163,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 165,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 63,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 88,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 147,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 196,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 268,
+			"sumfail": 1,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 75,
+			"sumfail": 2,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 201,
+			"sumfail": 2,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 31,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 39,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 39,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 47,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 57,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 57,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 57,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 60,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 61,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 63,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 66,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 85,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 87,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 91,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 97,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 104,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 105,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 108,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 124,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 128,
+			"sumfail": 0,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 1,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 1,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 1,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 77,
+			"sumfail": 1,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 188,
+			"sumfail": 1,
+			"courses_dept": "etec"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "fipr"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "fish"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "fish"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "fish"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "fish"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "fish"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "fish"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 39,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 41,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 80,
+			"sumfail": 0,
+			"courses_dept": "fnh"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "food"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "fopr"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "fopr"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 116,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 144,
+			"sumfail": 0,
+			"courses_dept": "frst"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "germ"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "gpp"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "gsat"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "hgse"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "hinu"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "hinu"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "hist"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "hunu"
+		},
+		{
+			"sumpass": 78,
+			"sumfail": 0,
+			"courses_dept": "isci"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "ital"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "itst"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "itst"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 118,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 156,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 164,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 194,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 216,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 222,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 238,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 248,
+			"sumfail": 0,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 242,
+			"sumfail": 2,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 246,
+			"sumfail": 2,
+			"courses_dept": "kin"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "larc"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "larc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "lfs"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "libe"
+		},
+		{
+			"sumpass": 39,
+			"sumfail": 0,
+			"courses_dept": "libe"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "libe"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "libe"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "libe"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "libr"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "libr"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "libr"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "libr"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "libr"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "libr"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "ling"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "lled"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 33,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "mech"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "medg"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 3,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 68,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 72,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 76,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 98,
+			"sumfail": 0,
+			"courses_dept": "medi"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 112,
+			"sumfail": 0,
+			"courses_dept": "micb"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "midw"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 45,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 2,
+			"courses_dept": "mine"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "mtrl"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "mtrl"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "mtrl"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "mtrl"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "mtrl"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 296,
+			"sumfail": 0,
+			"courses_dept": "musc"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "name"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "name"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "nrsc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 64,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 67,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 176,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 232,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 232,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 232,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 236,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 236,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 240,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "obst"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "obst"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "obst"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "obst"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "onco"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "onco"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "onco"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "onco"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "onco"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "onco"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "path"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "pcth"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 19,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 53,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 79,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 82,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 86,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 94,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 94,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 100,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 102,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 114,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 114,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 118,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 118,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 120,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 121,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 121,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 126,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 140,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 142,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 200,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 220,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 220,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 304,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 310,
+			"sumfail": 0,
+			"courses_dept": "phar"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "phil"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "phil"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "phil"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "phil"
+		},
+		{
+			"sumpass": 436,
+			"sumfail": 0,
+			"courses_dept": "phrm"
+		},
+		{
+			"sumpass": 436,
+			"sumfail": 0,
+			"courses_dept": "phrm"
+		},
+		{
+			"sumpass": 156,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 156,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 158,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 160,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 160,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 160,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 162,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 162,
+			"sumfail": 0,
+			"courses_dept": "phth"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 58,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "phys"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 46,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 50,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 62,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 66,
+			"sumfail": 0,
+			"courses_dept": "plan"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 32,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 34,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 40,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "psyc"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "rhsc"
+		},
+		{
+			"sumpass": 92,
+			"sumfail": 0,
+			"courses_dept": "rsot"
+		},
+		{
+			"sumpass": 94,
+			"sumfail": 0,
+			"courses_dept": "rsot"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "russ"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "russ"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "russ"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "sans"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "sans"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "soil"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "soil"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 17,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 29,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 53,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 66,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 106,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 112,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 130,
+			"sumfail": 0,
+			"courses_dept": "sowk"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "span"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "span"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 4,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 7,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 9,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 11,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 13,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 15,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 21,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 23,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 25,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 27,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 33,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 35,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 37,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 43,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 48,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 54,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 56,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 70,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 77,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 78,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 92,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 98,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 164,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 2,
+			"sumfail": 0,
+			"courses_dept": "stat"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "stat"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "stat"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "stat"
+		},
+		{
+			"sumpass": 28,
+			"sumfail": 0,
+			"courses_dept": "stat"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "stat"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "surg"
+		},
+		{
+			"sumpass": 10,
+			"sumfail": 0,
+			"courses_dept": "surg"
+		},
+		{
+			"sumpass": 12,
+			"sumfail": 0,
+			"courses_dept": "surg"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "surg"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "surg"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "surg"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 8,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 26,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 30,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 36,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 38,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 42,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 44,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 52,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 96,
+			"sumfail": 0,
+			"courses_dept": "thtr"
+		},
+		{
+			"sumpass": 1,
+			"sumfail": 0,
+			"courses_dept": "zool"
+		},
+		{
+			"sumpass": 5,
+			"sumfail": 0,
+			"courses_dept": "zool"
+		},
+		{
+			"sumpass": 6,
+			"sumfail": 0,
+			"courses_dept": "zool"
+		},
+		{
+			"sumpass": 14,
+			"sumfail": 0,
+			"courses_dept": "zool"
+		},
+		{
+			"sumpass": 20,
+			"sumfail": 0,
+			"courses_dept": "zool"
+		},
+		{
+			"sumpass": 22,
+			"sumfail": 0,
+			"courses_dept": "zool"
+		}
+	]
+}

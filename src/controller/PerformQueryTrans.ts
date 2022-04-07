@@ -152,7 +152,7 @@ export default class PerformQueryTrans {
 		let total: Decimal = new Decimal(0);
 		let numRows: number = 0;
 		for (let obj of jsonObj) {
-			total.add(new Decimal(obj[value]));
+			total = total.add(new Decimal(obj[value]));
 			numRows++;
 		}
 		let avg = (total.toNumber() / numRows);
@@ -182,7 +182,7 @@ export default class PerformQueryTrans {
 	private getSum(obj: any, value: string): number  {
 		let sum: number = 0;
 		for (let ob of obj) {
-			sum += obj[value];
+			sum += ob[value];
 		}
 		return Number(sum.toFixed(2));
 	}
@@ -209,10 +209,7 @@ export default class PerformQueryTrans {
 				} else if (a[sorter] < b[sorter]) {
 					res = -1;
 				}
-				if (up) {
-					return res;
-				}
-				return -res;
+				return res;
 			});
 		} else {
 			result.sort(function(a,b): number {

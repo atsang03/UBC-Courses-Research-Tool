@@ -1,0 +1,72 @@
+{
+	"title": "sum fail and pass",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"courses_avg": 98
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sumpass",
+				"sumfail",
+				"courses_dept"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"courses_dept"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"courses_dept"
+			],
+			"APPLY": [
+				{
+					"sumpass": {
+						"SUM": "courses_pass"
+					}
+				},
+				{
+					"sumfail": {
+						"SUM": "courses_fail"
+					}
+				}
+			]
+		}
+	},
+	"expected": [
+		{
+			"sumpass": 164,
+			"sumfail": 0,
+			"courses_dept": "spph"
+		},
+		{
+			"sumpass": 112,
+			"sumfail": 0,
+			"courses_dept": "nurs"
+		},
+		{
+			"sumpass": 18,
+			"sumfail": 0,
+			"courses_dept": "math"
+		},
+		{
+			"sumpass": 173,
+			"sumfail": 0,
+			"courses_dept": "epse"
+		},
+		{
+			"sumpass": 24,
+			"sumfail": 0,
+			"courses_dept": "eece"
+		},
+		{
+			"sumpass": 16,
+			"sumfail": 0,
+			"courses_dept": "cnps"
+		}
+	]
+}
