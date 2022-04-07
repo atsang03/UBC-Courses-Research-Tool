@@ -1,7 +1,7 @@
 import express, {Application, Request, Response} from "express";
 import * as http from "http";
 import cors from "cors";
-import {InsightDatasetKind, InsightError} from "../controller/IInsightFacade";
+import {InsightDataset, InsightDatasetKind, InsightError} from "../controller/IInsightFacade";
 import InsightFacade from "../controller/InsightFacade";
 import * as fs from "fs-extra";
 
@@ -94,20 +94,22 @@ export default class Server {
 
 	// Registers all request handlers to routes
 	private registerRoutes() {
-		// This is an example endpoint this you can invoke by accessing this URL in your browser:
 		// http://localhost:4321/echo/hello
 		this.express.get("/echo/:msg", Server.echo);
 		// TODO: your other endpoints should go here
 		this.express.put("/dataset/:id/:kind", (req,res) => {
 			try {
 				if (req.params.kind === "rooms") {
-					res.status(200).json(
-						{result: this.query.addDataset(req.params.id,
-							req.body.toString("base64"),InsightDatasetKind.Rooms)});
+					this.query.addDataset(String(req.params.id),
+						req.body.toString("base64"),InsightDatasetKind.Rooms)
+						.then((resul) => {
+							res.status(200).json({result: resul});
+						});
 				} else if (req.params.kind === "courses") {
-					res.status(200).json(
-						{result: this.query.addDataset(req.params.id,
-							req.body.toString("base64"),InsightDatasetKind.Courses)});
+					this.query.addDataset(String(req.params.id),
+						req.body.toString("base64"),InsightDatasetKind.Courses).then((resul) => {
+						res.status(200).json({result: resul});
+					});
 				} else {
 					new InsightError();
 				}
@@ -117,7 +119,9 @@ export default class Server {
 		});
 		this.express.delete("/dataset/:id",(req,res) => {
 			try {
-				res.status(200).json({result: this.query.removeDataset(req.params.id)});
+				this.query.removeDataset(String(req.params.id)).then((resul) => {
+					res.status(200).json({result: resul});
+				});
 			} catch (err) {
 				if (err === "InsightError") {
 					res.status(400).json({error: String(err)});
@@ -128,13 +132,17 @@ export default class Server {
 		});
 		this.express.post("/query",(req,res) => {
 			try {
-				res.status(200).json({result: this.query.performQuery(req.body)});
+				this.query.performQuery(req.body).then((resul) => {
+					res.status(200).json({result: resul});
+				});
 			} catch (err) {
 				res.status(400).json({error: String(err)});
 			}
 		});
 		this.express.get("/datasets", (req, res) => {
-			res.status(200).json({result: this.query.listDatasets()});
+			this.query.listDatasets().then((resul) => {
+				res.status(200).json({result: resul});
+			});
 		});
 	}
 
