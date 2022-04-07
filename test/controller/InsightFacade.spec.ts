@@ -1,7 +1,8 @@
 import {
 	InsightDatasetKind,
 	InsightError,
-	InsightResult, NotFoundError,
+	InsightResult,
+	NotFoundError,
 	ResultTooLargeError
 } from "../../src/controller/IInsightFacade";
 import InsightFacade from "../../src/controller/InsightFacade";
@@ -67,12 +68,29 @@ describe("InsightFacade", function () {
 			});
 		});
 
-		it("should add a room type dataset", function () {
+		it("should add a room type and multiple datasets", function () {
 			const id: string = "rooms";
 			const content: string = datasetContents.get("rooms") ?? "";
 			const expected: string[] = [id];
 			return insightFacade.addDataset(id, content, InsightDatasetKind.Rooms).then((result: string[]) => {
 				expect(result).to.deep.equal(expected);
+			}).then(() => {
+				return insightFacade.addDataset("courses",content,InsightDatasetKind.Rooms);
+			}).then(() => {
+				return insightFacade.addDataset("testingextra",content,InsightDatasetKind.Rooms);
+			}).then((res) => {
+				expect(res).to.deep.equal(["rooms","courses","testingextra"]);
+			});
+		});
+
+		it("should return list of datasets", function() {
+			const id: string = "rooms";
+			const content: string = datasetContents.get("rooms") ?? "";
+			const expected: string[] = [id];
+			return insightFacade.addDataset(id, content, InsightDatasetKind.Rooms).then(() => {
+				insightFacade.listDatasets().then((res) => {
+					expect(res).to.deep.equal([{id: "rooms",kind:"rooms",numRows:364}]);
+				});
 			});
 		});
 
@@ -81,10 +99,28 @@ describe("InsightFacade", function () {
 			// console.log(insightFacade.listDatasets());
 			// console.log(fs.readdirSync("data") === []);
 			return insightFacade.removeDataset(id).then(() => {
-				insightFacade.removeDataset("rooms");
+				return insightFacade.removeDataset("rooms");
+			}).then(() => {
+				expect(fs.readdirSync("data")).to.deep.equal(["testingextra"]);
+			}).then(() => {
+				return insightFacade.removeDataset("testingextra");
 			}).then(() => {
 				expect(fs.readdirSync("data")).to.deep.equal([]);
 			});
+		});
+
+		it( "should be able to add after deleting", function() {
+			const id1: string = "courses";
+			const content: string = datasetContents.get("courses") ?? "";
+			const expected: string[] = [id1];
+			return insightFacade.addDataset(id1, content, InsightDatasetKind.Courses)
+				.then(() => {
+					return insightFacade.removeDataset(id1);
+				}).then(() => {
+					return insightFacade.addDataset(id1,content,InsightDatasetKind.Courses);
+				}).then((res) => {
+					expect(res).to.deep.equal(expected);
+				});
 		});
 
 	});

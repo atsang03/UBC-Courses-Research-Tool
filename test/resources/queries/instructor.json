@@ -1,0 +1,135 @@
+{
+	"title": "test instructor",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"courses_instructor": "paterson, erika"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"courses_dept",
+				"courses_avg"
+			],
+			"ORDER": "courses_avg"
+		}
+	},
+	"expected": [
+		{
+			"courses_dept": "engl",
+			"courses_avg": 65.97
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 66.82
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 67.03
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 68.28
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 70.56
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 71
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 71.25
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 71.64
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 71.75
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 71.83
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 72.21
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 73.06
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 73.1
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 73.86
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 75.42
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 75.52
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 75.85
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 76.31
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 76.35
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 77.19
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 77.26
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 77.43
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 78.52
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 79.06
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 81.88
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 82.03
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 82.37
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 82.74
+		},
+		{
+			"courses_dept": "engl",
+			"courses_avg": 83.6
+		}
+	]
+}

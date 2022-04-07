@@ -26,6 +26,8 @@ export default class InsightFacade implements IInsightFacade {
 		if (id.includes("_") || id.trim().length === 0 || this.idList.includes(id)) {
 			return Promise.reject(new InsightError("invalid id/ already used id"));
 		}
+		this.secList = [];
+		this.buildingList = [];
 		if (kind === InsightDatasetKind.Courses) {
 			return await this.addCourse(id, content, kind);
 		} else if (kind === InsightDatasetKind.Rooms) {
@@ -35,7 +37,6 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	private async addCourse(id: string, content: string, kind: InsightDatasetKind): Promise<string[]>{
-		let idList: string[] = [];
 		let promises: Array<Promise<any>> = [];
 		let zip = new JSZip();
 		let counter: number = 0;
@@ -56,11 +57,10 @@ export default class InsightFacade implements IInsightFacade {
 		await Promise.all(promises);
 		this.datasetList.push({id: id, kind: kind, numRows: counter});
 		this.datasetList.forEach((element) => {
-			idList.push(element.id);
 			this.idList.push(element.id);
 		});
 		fs.writeFileSync(`data/${id}`, JSON.stringify(this.secList));
-		return Promise.resolve(idList);
+		return Promise.resolve(this.idList);
 	}
 
 	public async addRooms(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
@@ -251,23 +251,18 @@ export default class InsightFacade implements IInsightFacade {
 		return input.performQuery();
 	}
 
-	// Function to remove dataset
 	public removeDataset(id: string): Promise<string> {
 		if (id.includes("_") || id.trim().length === 0) {
 			return Promise.reject(new InsightError("invalid id"));
 		} else if (!fs.existsSync(`data/${id}`)) {
-			return Promise.reject("No dataset with this id found");
+			return Promise.reject(new NotFoundError("No dataset with this id found"));
 		}
 		fs.unlinkSync(`data/${id}`);
-		this.datasetList.forEach((element) => {
-			if (element.id === id) {
-				element.remove();
-			}
+		this.datasetList = this.datasetList.filter((ele) => {
+			return ele["id"] !== id;
 		});
-		this.secList.forEach((element) => {
-			if (element.dataID === id) {
-				element.remove();
-			}
+		this.idList = this.idList.filter((ele) => {
+			return ele !== id;
 		});
 		return Promise.resolve(id);
 	}
