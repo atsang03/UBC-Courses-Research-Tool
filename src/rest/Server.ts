@@ -107,7 +107,7 @@ export default class Server {
 						});
 				} else if (req.params.kind === "courses") {
 					this.query.addDataset(String(req.params.id),
-						req.body.toString("base64"),InsightDatasetKind.Courses).then((resul) => {
+						(req.body as Buffer).toString("base64"),InsightDatasetKind.Courses).then((resul) => {
 						res.status(200).json({result: resul});
 					});
 				} else {
